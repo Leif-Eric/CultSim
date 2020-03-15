@@ -18,7 +18,7 @@ public class GameController : MonoBehaviour
         }
 
         Instance = this;
-        MessageBus.Subscribe<Messages.TestMessage1>(OnTestMessageReceived);
+    //    MessageBus.Subscribe<Messages.TestMessage1>(OnTestMessageReceived);
     }
 
     private void Start()
@@ -26,11 +26,11 @@ public class GameController : MonoBehaviour
       
     }
 
-    public void OnTestMessageReceived(Messages.TestMessage1 msg)
-    {
-        Debug.Log("*** cool, message received: " + msg.Message);
+    //public void OnTestMessageReceived(Messages.TestMessage1 msg)
+    //{
+    //    Debug.Log("*** cool, message received: " + msg.Message);
 
-        //unsubscribe
-        MessageBus.Unsubscribe<Messages.TestMessage1>(OnTestMessageReceived);
-    }
+    //    //unsubscribe
+    //    MessageBus.Unsubscribe<Messages.TestMessage1>(OnTestMessageReceived);
+    //}
 }
