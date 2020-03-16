@@ -1,4 +1,4 @@
-﻿using GameEventBus.Events;
+using GameEventBus.Events;
 
 public class Messages
 {

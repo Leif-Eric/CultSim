@@ -11,18 +11,22 @@ public class Worker : MonoBehaviour
         Changing
     }
 
-    private bool _selected, _clicked;
+    private bool _selected, _clicked, _isPermanent;
     private State _currentState;
+    private int _currentRoomIndex;
+
+    private void Start()
+    {
+        _currentRoomIndex = 1;
+    }
 
     private void OnMouseEnter()
     {
-        Debug.Log("** selected");
         _selected = true;
     }
 
     private void OnMouseExit()
     {
-        Debug.Log("** exited");
         _selected = false;   
     }
 
@@ -37,25 +41,26 @@ public class Worker : MonoBehaviour
         }
        
 
-        if(_clicked && Input.GetMouseButtonDown(1))
+        if(_clicked && Input.GetMouseButtonDown(1) && _currentState != State.Changing)
         {
-            StartChangingRoom();
+            GetClickedRoom();
         }
     }
 
-    private void StartChangingRoom()
+    private void StartChangingRoom(int current, int target)
     {
         _currentState = State.Changing;
-        List<Transform> points = GameController.Instance.WayPointHandler.GetWayPoints(1,4);
+        List<Transform> points = GameController.Instance.WayPointHandler.GetWayPoints(current, target);
 
         StartCoroutine(MoveToDestination(points));
+        _currentRoomIndex = target;
     }
 
     private IEnumerator MoveToDestination(List<Transform> points)
     {
         int index = 0;
        
-        while (index < points.Count - 1)
+        while (index < points.Count)
         {
             transform.localPositionTransition(points[index].position, 2f);
 
@@ -66,6 +71,34 @@ public class Worker : MonoBehaviour
             index++;
         }
 
+        _currentState = State.Working;
+
         yield return null;
+    }
+
+    private void GetClickedRoom()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+
+        if (hit.collider != null && hit.transform.GetComponent<Room>() != null)
+        {
+            int targetRoom = hit.transform.GetComponent<Room>().RoomIndex;
+
+            if(_currentRoomIndex != targetRoom)
+            {
+                Debug.Log("tagret: " + targetRoom);
+                StartChangingRoom(_currentRoomIndex, targetRoom);
+            }
+        }
+        else
+        {
+            _selected = _clicked = false;
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.black;
+        Gizmos.DrawLine(Input.mousePosition, Vector3.back);
     }
 }
