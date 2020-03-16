@@ -1,7 +1,85 @@
 fileFormatVersion: 2
 guid: 41354058ddef71741bb4f226de39f9f0
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 8777824922998612401
+    second: WorkerActive_start
+  - first:
+      213: 3765853880425637702
+    second: Worker_active_bar
+  - first:
+      213: 1249985808958975487
+    second: Worker_upgrade_inactive_start
+  - first:
+      213: 8537368232269895075
+    second: Worker_upgrade_inactive_bar
+  - first:
+      213: 7065759579151131531
+    second: UISheet_4
+  - first:
+      213: -2515130379638872276
+    second: UISheet_5
+  - first:
+      213: -3044407221058930715
+    second: UISheet_6
+  - first:
+      213: -6560312497393280637
+    second: UISheet_7
+  - first:
+      213: 8609931220251892044
+    second: Worker_Free
+  - first:
+      213: -9119004044214425381
+    second: Worker_Occupied
+  - first:
+      213: 6362277212160839285
+    second: Worker_Locked
+  - first:
+      213: -4215314136768902380
+    second: Worker_big
+  - first:
+      213: 2879998365708759840
+    second: worker_small
+  - first:
+      213: 9147533179929568004
+    second: faith
+  - first:
+      213: 9108723923615749502
+    second: security_1
+  - first:
+      213: -904770986938887607
+    second: security_2
+  - first:
+      213: -1729156314549364145
+    second: security_3
+  - first:
+      213: 2286855326212898726
+    second: money
+  - first:
+      213: 4083931574701041299
+    second: U1_Knob
+  - first:
+      213: 4594178055204931122
+    second: U2_Knob
+  - first:
+      213: -3671742638147237762
+    second: UISheet_20
+  - first:
+      213: 1877452279729693718
+    second: ressource_base_1
+  - first:
+      213: 5672158602788577950
+    second: ressource_base_2
+  - first:
+      213: -4190556970905388472
+    second: ressource_background
+  - first:
+      213: 4588711228920379465
+    second: U1_Bar
+  - first:
+      213: 6527605412469551307
+    second: U2_Bar
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -31,7 +109,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -40,7 +118,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -70,9 +148,462 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: WorkerActive_start
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 371
+        width: 33
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f8ce0056b61c1842be532bb78fffe9b
+      internalID: 8777824922998612401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Worker_active_bar
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 371
+        width: 17
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c77e75c6c0dbba439893937ac21086b
+      internalID: 3765853880425637702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Worker_upgrade_inactive_start
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 354
+        width: 33
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bce546a478d0d634c8ef7e9b2bb42b85
+      internalID: 1249985808958975487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Worker_upgrade_inactive_bar
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 354
+        width: 17
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78bec676079447b44b909bb44b217613
+      internalID: 8537368232269895075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Worker_Free
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 321
+        width: 14
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71cc37c24d505dd448233df80e14be0a
+      internalID: 8609931220251892044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Worker_Occupied
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 321
+        width: 14
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b2ba4261dd8fe04891c9a6e0d011ac4
+      internalID: -9119004044214425381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Worker_Locked
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 321
+        width: 14
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 079b149b710ec9e4194d7d16c011c4c5
+      internalID: 6362277212160839285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Worker_big
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 294
+        width: 10
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c730d5d39134d745af885ab502622b7
+      internalID: -4215314136768902380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: worker_small
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 293
+        width: 6
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92749126a8e7d8f48baa1072c041ea4c
+      internalID: 2879998365708759840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: faith
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 293
+        width: 5
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57591993464cbc440865a2729e264123
+      internalID: 9147533179929568004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: security_1
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 299
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdc52797cc246464b93f39251abe3a18
+      internalID: 9108723923615749502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: security_2
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 299
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3060aa053bbcd7549b57da6fa8331488
+      internalID: -904770986938887607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: security_3
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 299
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7887c9a8c40ad3a459ab05ee213c0dd5
+      internalID: -1729156314549364145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: money
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 293
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee86707eed348e0468b1c70acd45f763
+      internalID: 2286855326212898726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: U1_Knob
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 277
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b641971c3a4bfa5468486e75e9c755a7
+      internalID: 4083931574701041299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: U2_Knob
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 277
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b7687c52f6d36040ad031156831484b
+      internalID: 4594178055204931122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ressource_base_1
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 233
+        width: 15
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7310ce184077524ca75cdb4a2866328
+      internalID: 1877452279729693718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ressource_base_2
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 233
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 809b721e93d4e194b80349b5941a2c4d
+      internalID: 5672158602788577950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ressource_background
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 212
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4570ad85bb3762845859a955aba1414f
+      internalID: -4190556970905388472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: U1_Bar
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 271
+        width: 15
+        height: 3
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 13, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9490320454b9fc5478207348825f4e75
+      internalID: 4588711228920379465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: U2_Bar
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 271
+        width: 11
+        height: 3
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 9, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 121eeb2d116a28d4aa6a8bbb15eae31c
+      internalID: 6527605412469551307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
