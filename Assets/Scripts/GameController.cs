@@ -3,12 +3,13 @@ using GameEventBus;
 
 public class GameController : MonoBehaviour
 {
-    //initialize global instance of messagebus
+    #region static stuff
     public static EventBus MessageBus = new EventBus();
 
     public static GameController Instance;
+    #endregion
 
-    private object token1;
+    public WayPointHandler WayPointHandler;
 
     private void Awake()
     {
