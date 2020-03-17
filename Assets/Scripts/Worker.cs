@@ -14,9 +14,14 @@ public class Worker : MonoBehaviour
     private bool _selected, _clicked, _isPermanent;
     private State _currentState;
     private int _currentRoomIndex;
+    private Animator _animator;
+    //todo change sorting-order while moving to new destination and back
+    private SpriteRenderer _spriteRenderer;
 
     private void Start()
     {
+        _animator = GetComponent<Animator>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
         _currentRoomIndex = 1;
     }
 
@@ -47,16 +52,21 @@ public class Worker : MonoBehaviour
         }
     }
 
-    private void StartChangingRoom(int current, int target)
+    private void StartChangingRoom(int current, int target, Room r)
     {
         _currentState = State.Changing;
         List<Transform> points = GameController.Instance.WayPointHandler.GetWayPoints(current, target);
 
-        StartCoroutine(MoveToDestination(points));
+        StartCoroutine(MoveToDestination(points, r));
         _currentRoomIndex = target;
     }
 
-    private IEnumerator MoveToDestination(List<Transform> points)
+    /// <summary>
+    /// move to destinated room
+    /// </summary>
+    /// <param name="points">way-points to reach room</param>
+    /// <returns>null</returns>
+    private IEnumerator MoveToDestination(List<Transform> points, Room r)
     {
         int index = 0;
        
@@ -73,6 +83,40 @@ public class Worker : MonoBehaviour
 
         _currentState = State.Working;
 
+        WorkSpot workingSpot = r.GetWorkingSpot();
+
+        if (workingSpot.DestinationWay.Count > 0)
+        {
+            StartCoroutine(MoveToDestinationSpot(workingSpot.DestinationWay));
+        }
+        else
+        {
+            workingSpot.IsFree = false;
+            transform.localPositionTransition(workingSpot.SpotPosition.position, 1f);
+        }
+
+        yield return null;
+    }
+
+    /// <summary>
+    /// move to destinated working spot
+    /// </summary>
+    /// <param name="points">waypoints to reach spot</param>
+    /// <returns>null</returns>
+    private IEnumerator MoveToDestinationSpot(List<Transform> points)
+    {
+        int index = 0;
+
+        while (index < points.Count)
+        {
+            transform.localPositionTransition(points[index].position, 2f);
+
+            while (transform.position != points[index].position)
+            {
+                yield return new WaitForEndOfFrame();
+            }
+            index++;
+        }
         yield return null;
     }
 
@@ -82,11 +126,12 @@ public class Worker : MonoBehaviour
 
         if (hit.collider != null && hit.transform.GetComponent<Room>() != null)
         {
-            int targetRoom = hit.transform.GetComponent<Room>().RoomIndex;
+            Room r = hit.transform.GetComponent<Room>();
+            int targetRoom = r.RoomIndex;
 
-            if(_currentRoomIndex != targetRoom)
+            if(_currentRoomIndex != targetRoom && r.HasFreeSpot())
             {
-                StartChangingRoom(_currentRoomIndex, targetRoom);
+                StartChangingRoom(_currentRoomIndex, targetRoom, r);
             }
         }
         else
