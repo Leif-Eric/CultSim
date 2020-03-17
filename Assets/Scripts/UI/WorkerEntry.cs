@@ -5,13 +5,19 @@ public class WorkerEntry : MonoBehaviour
 {
     public enum State
     {
-        Occupied,
-        Locked,
-        Free
+        Occupied = 0,
+        Locked = 1,
+        Free = 2
     }
+
     public Sprite Occupied, Locked, Free;
     public Image BackgroundSprite;
     public GameObject Worker;
+
+    public void Init(State state)
+    {
+        ChangeState(state);
+    }
 
     public void ChangeState(State target)
     {

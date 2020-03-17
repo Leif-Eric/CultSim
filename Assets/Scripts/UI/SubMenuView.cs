@@ -7,12 +7,20 @@ public class SubMenuView : MonoBehaviour
     public void Close()
     {
         View.SetActive(false);
-        StartMenu.Instance.IsMenuActive = false;
+
+        if(StartMenu.Instance != null)
+        {
+            StartMenu.Instance.IsMenuActive = false;
+        }
+
     }
 
-    public void Open()
+    public virtual void Open()
     {
         View.SetActive(true);
-        StartMenu.Instance.IsMenuActive = true;
+        if(StartMenu.Instance != null)
+        {
+            StartMenu.Instance.IsMenuActive = true;
+        }
     }
 }

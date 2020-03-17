@@ -11,6 +11,8 @@ public class GameController : MonoBehaviour
 
     public WayPointHandler WayPointHandler;
 
+    public RessourceInfoComponent RessourceInfo;
+
     private void Awake()
     {
         if(Instance != null)

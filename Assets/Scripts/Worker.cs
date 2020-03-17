@@ -86,7 +86,6 @@ public class Worker : MonoBehaviour
 
             if(_currentRoomIndex != targetRoom)
             {
-                Debug.Log("tagret: " + targetRoom);
                 StartChangingRoom(_currentRoomIndex, targetRoom);
             }
         }
