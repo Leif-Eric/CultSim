@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using static Messages;
 
 public class ResourceManager : MonoBehaviour
 {
@@ -289,6 +288,7 @@ public class ResourceManager : MonoBehaviour
             faithPW * wm.faithWorker +
             faithPMWMiddle * wm.moneyWorkerMiddle +
             faithPWWMiddle * wm.watchscoreWorkerMiddle);
+
         faith += faithGrowth+wm.workersSacrifycedSinceLastUpdate*faithPerSacrifice;
         uFaith += faithGrowth + wm.workersSacrifycedSinceLastUpdate * faithPerSacrifice;
 
@@ -319,7 +319,20 @@ public class ResourceManager : MonoBehaviour
         workers -= wm.workersSacrifycedSinceLastUpdate;
         roundedWorkers = (int)workers;
         freeWorkers = wm.freeWorkers;
+
+        GameController.MessageBus.Publish<RessourcesUpdatedMessage>(new RessourcesUpdatedMessage());
     }
 
-
+    public int GetWatchLevel()
+    {
+        if(watchscore < LEVEL_ONE_WATCHSCORE)
+        {
+            return 0;
+        }
+        if (watchscore < LEVEL_TWO_WATCHSCORE)
+        {
+            return 1;
+        }
+        return 2;
+    }
 }

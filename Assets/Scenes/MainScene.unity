@@ -1148,6 +1148,10 @@ MonoBehaviour:
   FaithTxt: {fileID: 1341961252}
   MenaceTxt: {fileID: 167805580}
   Moneytxt: {fileID: 1583580272}
+  Watch0: {fileID: 9108723923615749502, guid: 41354058ddef71741bb4f226de39f9f0, type: 3}
+  Watch1: {fileID: -904770986938887607, guid: 41354058ddef71741bb4f226de39f9f0, type: 3}
+  Watch2: {fileID: -1729156314549364145, guid: 41354058ddef71741bb4f226de39f9f0, type: 3}
+  WachtImage: {fileID: 1658363357}
 --- !u!222 &858544858
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2448,6 +2452,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1658363357 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3551324998623223606, guid: af4a8a648f523cb42a8df1f80c52dcb8,
+    type: 3}
+  m_PrefabInstance: {fileID: 167805578}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1679989229
 GameObject:
   m_ObjectHideFlags: 0
@@ -2580,6 +2596,7 @@ GameObject:
   - component: {fileID: 1714199360}
   - component: {fileID: 1714199359}
   - component: {fileID: 1714199361}
+  - component: {fileID: 1714199362}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -2708,6 +2725,81 @@ MonoBehaviour:
     - {fileID: 251240459}
     - {fileID: 1270437446}
     - {fileID: 639472989}
+--- !u!114 &1714199362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1714199358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 625be011559f6ad4797ae95373dc3860, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  faith: 0
+  faithGrowth: 0
+  faithGrowthModifyer: 0
+  uFaith: 0
+  faithPW: 0
+  faithPerSacrifice: 0
+  watchscoreGrowthPerSacrifice: 0
+  standardFaithPW: 0
+  standardFaithPerSacrifice: 0
+  standardWatchscoreGrowthPerSacrifice: 0
+  watchscore: 0
+  watchscoreGrowth: 0
+  watchscoreGrowthModifyer: 0
+  moneyLoss: 0
+  workerKillRate: 0
+  watchscoreDividerNormal: 0
+  watchscoreDividerMiddle: 0
+  watchscoreDividerHigh: 0
+  moneyLossDividerMiddle: 0
+  wKillrateDividerHigh: 0
+  kostPerMilitaWorker: 0
+  standardWatchscoreGrowth: 0
+  standardMoneyLossOnLevelTwo: 0
+  standardWorkerKillRateOnLevelThree: 0
+  standardWatchscoreDividerNormal: 0
+  standardWatchscoreDividerMiddle: 0
+  standardWatchscoreDividerHigh: 0
+  standardMoneyLossDividerMiddle: 0
+  standardWKillrateDividerHigh: 0
+  standardKostPerMilitaWorker: 0
+  money: 0
+  roundedMoney: 0
+  moneyGrowth: 0
+  moneyGrowthModifyer: 0
+  moneyPWNormal: 0
+  moneyPWMiddle: 0
+  moneyPWHigh: 0
+  faithPMWMiddle: 0
+  watchscoreGrowthPMWHigh: 0
+  startMoney: 0
+  standardMoneyPWNormal: 0
+  standardMoneyPWMiddle: 0
+  standardMoneyPWHigh: 0
+  standardFaithPMWMiddle: 0
+  standardwatchscoreGrowthPMWHigh: 0
+  workers: 0
+  roundedWorkers: 0
+  freeWorkers: 0
+  workerGrowth: 0
+  workerGrowthInPercent: 0
+  workerGrowthModifyer: 0
+  workerPWNormal: 0
+  workerPWMiddle: 0
+  workerPWHigh: 0
+  faithPWWMiddle: 0
+  workerPWWHigh: 0
+  startWorker: 0
+  standardWorkerGrowth: 0
+  standardWorkerPWNormal: 0
+  standardWorkerPWMiddle: 0
+  standardWorkerPWHigh: 0
+  standardFaithPWWMiddle: 0
+  standardWatchscoreGrowthPWWHigh: 0
 --- !u!114 &1926427603 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6778501087783902131, guid: ff0d443652812a94d853e1f3fa3c9812,

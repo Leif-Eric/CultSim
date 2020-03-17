@@ -1,15 +1,52 @@
 ﻿using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+using static Messages;
 
 public class RessourceInfoComponent : MonoBehaviour
 {
     public TextMeshProUGUI WorkerTxt, FaithTxt, MenaceTxt, Moneytxt;
+    public Sprite Watch0, Watch1, Watch2;
+    public Image WachtImage;
 
-    public void UpdateInfos(int worker, int faith, int menace, int money)
+    private ResourceManager _ressourceManager;
+    public void Awake()
     {
-        WorkerTxt.text = worker.ToString();
-        FaithTxt.text = faith.ToString();
-        MenaceTxt.text = menace.ToString();
-        Moneytxt.text = money.ToString();
+        GameController.MessageBus.Subscribe<RessourcesUpdatedMessage>(OnRessourcesUpdated);
+    }
+
+    private void Start()
+    {
+        _ressourceManager = ResourceManager.Instance;
+        UpdateInfos();
+    }
+
+    private void OnRessourcesUpdated(RessourcesUpdatedMessage msg)
+    {
+        UpdateInfos();
+    }
+
+    private void UpdateInfos()
+    {
+        WorkerTxt.text = _ressourceManager.roundedWorkers.ToString();
+        Moneytxt.text = _ressourceManager.roundedMoney.ToString();
+        FaithTxt.text = _ressourceManager.faith + "/" + _ressourceManager.uFaith;
+        MenaceTxt.text = _ressourceManager.watchscore.ToString();
+
+        Sprite s = null;
+        switch(_ressourceManager.GetWatchLevel())
+        {
+            case 0:
+                s = Watch0;
+                break;
+            case 1:
+                s = Watch1;
+                break;
+            case 2:
+                s = Watch2;
+                break;
+        }
+
+        WachtImage.sprite = s;
     }
 }
