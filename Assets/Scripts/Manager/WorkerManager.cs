@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class WorkerManager : MonoBehaviour
 {
+    private static WorkerManager _instance;
+    [HideInInspector]
+    public static WorkerManager Instance { get { return _instance; } }
+
     [HideInInspector]
     public int faithWorker;
 
@@ -26,8 +30,27 @@ public class WorkerManager : MonoBehaviour
     [HideInInspector]
     public int workerWorkerMiddle;
     [HideInInspector]
-    public int workkrWorkerHigh;
+    public int workerWorkerHigh;
 
+    [HideInInspector]
+    public int workersSacrifycedSinceLastUpdate;
+    [HideInInspector]
+    public int freeWorkers;
+
+    public int startWorker;
+
+    //Singelton Awake
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()

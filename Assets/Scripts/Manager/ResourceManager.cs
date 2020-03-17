@@ -27,7 +27,7 @@ public class ResourceManager : MonoBehaviour
      *      - 3 U LOOSE
      *  - Money (0-X)
      *      - kann verbraucht werden
-     *  - Worker(0-75)
+     *  - Worker(0-50)
      *      - kann verbraucht werden
      *      - fWorker = Free Worker(0-Worker).
      *    
@@ -110,6 +110,7 @@ public class ResourceManager : MonoBehaviour
 
     [HideInInspector]
     public float wKillrateDividerHigh;
+
     [HideInInspector]
     public float kostPerMilitaWorker;
     //Stellschrauben
@@ -135,7 +136,7 @@ public class ResourceManager : MonoBehaviour
     [HideInInspector]
     public float money;
     [HideInInspector]
-    public float roundedMoney;
+    public int roundedMoney;
     [HideInInspector]
     public float moneyGrowth;
     [HideInInspector]
@@ -191,11 +192,10 @@ public class ResourceManager : MonoBehaviour
     [HideInInspector]
     public float faithPWWMiddle;
     [HideInInspector]
-    public float workerPWWHigh;
+    public float watchscoreGrowthPWWHigh;
 
 
     //Stellschrauben
-    public int startWorker;
     public float standardWorkerGrowth;
     [Space(10)]
     public float standardWorkerPWNormal;
@@ -220,6 +220,7 @@ public class ResourceManager : MonoBehaviour
 
     public void Initialise()
     {
+        wm = WorkerManager.Instance;
         //Faith
   
         faith=0;
@@ -265,7 +266,7 @@ public class ResourceManager : MonoBehaviour
 
         //Worker
 
-        workers=startWorker;
+        workers=wm.startWorker;
         roundedWorkers=(int)workers;
         freeWorkers=roundedWorkers;
         workerGrowth=standardWorkerGrowth;
@@ -277,16 +278,47 @@ public class ResourceManager : MonoBehaviour
         workerPWHigh = standardWorkerPWHigh;
 
         faithPWWMiddle=standardFaithPWWMiddle;
-        workerPWWHigh=standardWatchscoreGrowthPWWHigh;
+        watchscoreGrowthPWWHigh=standardWatchscoreGrowthPWWHigh;
 
     }
 
     public void UpdateRessources()
     {
+        //evry sec. one update
         faithGrowth = faithGrowthModifyer * (
             faithPW * wm.faithWorker +
             faithPMWMiddle * wm.moneyWorkerMiddle +
             faithPWWMiddle * wm.watchscoreWorkerMiddle);
+        faith += faithGrowth+wm.workersSacrifycedSinceLastUpdate*faithPerSacrifice;
+        uFaith += faithGrowth + wm.workersSacrifycedSinceLastUpdate * faithPerSacrifice;
+
+        watchscoreGrowth = watchscoreGrowthModifyer * (
+            watchscoreDividerNormal * wm.watchscoreWorkerNormal +
+            watchscoreDividerMiddle * wm.watchscoreWorkerMiddle +
+            watchscoreDividerHigh * wm.watchscoreWorkerHigh +
+            watchscoreGrowthPMWHigh * wm.moneyWorkerHigh +
+            watchscoreGrowthPWWHigh * wm.workerWorkerHigh
+            );
+        watchscore += watchscoreGrowth;
+
+        moneyGrowth = moneyGrowthModifyer * (
+            moneyPWNormal * wm.moneyWorkerNormal +
+            moneyPWMiddle * wm.moneyWorkerMiddle +
+            moneyPWHigh * wm.moneyWorkerHigh
+            );
+        money += moneyGrowth;
+        roundedMoney = (int)money;
+
+        workerGrowth = workerGrowthModifyer * (
+            workerPWNormal*wm.workerWorkerNormal+
+            workerPWMiddle*wm.workerWorkerMiddle+
+            workerPWHigh*wm.workerWorkerHigh
+            );
+        workerGrowthInPercent = (int)(workerGrowth * 100);
+        workers += workerGrowth;
+        workers -= wm.workersSacrifycedSinceLastUpdate;
+        roundedWorkers = (int)workers;
+        freeWorkers = wm.freeWorkers;
     }
 
 
