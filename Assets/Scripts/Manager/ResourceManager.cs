@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using static Messages;
-
+using static Messages;
+
 public class ResourceManager : MonoBehaviour
 {
     /*
@@ -84,6 +84,8 @@ public class ResourceManager : MonoBehaviour
 
     //MainVariables
     [HideInInspector]
+    public int actualWatchscorePhase;
+    [HideInInspector]
     public float watchscore;
     [HideInInspector]
     public float watchscoreGrowth;
@@ -93,6 +95,7 @@ public class ResourceManager : MonoBehaviour
     public float moneyLoss;
     [HideInInspector]
     public float workerKillRate;
+    [HideInInspector]
     private float killRateCounter;
 
     //subvariables
@@ -231,6 +234,7 @@ public class ResourceManager : MonoBehaviour
         watchscoreGrowthPerSacrifice=standardWatchscoreGrowthPerSacrifice;
 
         //Watchscore
+        actualWatchscorePhase = 0;
 
         watchscore=0;
         watchscoreGrowth=standardWatchscoreGrowth;
@@ -300,7 +304,16 @@ public class ResourceManager : MonoBehaviour
             watchscoreGrowthPWWHigh * wm.workerWorkerHigh
             );
         watchscore += watchscoreGrowth;
-
+        if (watchscore > LEVEL_ONE_WATCHSCORE)
+        {
+            if (watchscore > LEVEL_TWO_WATCHSCORE)
+                actualWatchscorePhase = 2;
+            else
+                actualWatchscorePhase = 1;
+        }
+        else
+            actualWatchscorePhase = 0;
+        //worker killchance
         moneyGrowth = moneyGrowthModifyer * (
             moneyPWNormal * wm.moneyWorkerNormal +
             moneyPWMiddle * wm.moneyWorkerMiddle +
@@ -308,7 +321,7 @@ public class ResourceManager : MonoBehaviour
             );
         money += moneyGrowth;
         roundedMoney = (int)money;
-
+        //moneyloss
         workerGrowth = workerGrowthModifyer * (
             workerPWNormal*wm.workerWorkerNormal+
             workerPWMiddle*wm.workerWorkerMiddle+
@@ -318,21 +331,21 @@ public class ResourceManager : MonoBehaviour
         workers += workerGrowth;
         workers -= wm.workersSacrifycedSinceLastUpdate;
         roundedWorkers = (int)workers;
-        freeWorkers = wm.freeWorkers;
-
+        freeWorkers = wm.freeWorkers;
+
         GameController.MessageBus.Publish<RessourcesUpdatedMessage>(new RessourcesUpdatedMessage());
     }
 
-    public int GetWatchLevel()
-    {
-        if(watchscore < LEVEL_ONE_WATCHSCORE)
-        {
-            return 0;
-        }
-        if (watchscore < LEVEL_TWO_WATCHSCORE)
-        {
-            return 1;
-        }
-        return 2;
+    public int GetWatchLevel()
+    {
+        if(watchscore < LEVEL_ONE_WATCHSCORE)
+        {
+            return 0;
+        }
+        if (watchscore < LEVEL_TWO_WATCHSCORE)
+        {
+            return 1;
+        }
+        return 2;
     }
 }
