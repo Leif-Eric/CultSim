@@ -25,9 +25,10 @@ public class RoomUiView : SubMenuView
         _sliderMax = 5;
     }
 
-    public override void Open()
+    public void OpenRoom(int roomIndex)
     {
-        base.Open();
+        //get room data withj room index
+        Open();
 
         UpdateView();
     }

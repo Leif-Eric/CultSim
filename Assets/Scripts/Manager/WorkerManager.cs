@@ -39,6 +39,10 @@ public class WorkerManager : MonoBehaviour
 
     public int startWorker;
 
+    public int CurrentWorker;
+
+    public const int StartPool = 10;
+
     //Singelton Awake
     private void Awake()
     {

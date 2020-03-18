@@ -5,9 +5,9 @@ using System.Linq;
 public class Room : MonoBehaviour
 {
     public int RoomIndex;
+    private bool _isSelected;
 
     public List<WorkSpot> WorkingSpots = new List<WorkSpot>();
-
 
     private void Awake()
     {
@@ -26,5 +26,23 @@ public class Room : MonoBehaviour
     public bool HasFreeSpot()
     {
         return WorkingSpots.Any(each => each.IsFree);
+    }
+
+    private void OnMouseEnter()
+    {
+        _isSelected = true;
+    }
+
+    private void OnMouseExit()
+    {
+        _isSelected = false;
+    }
+
+    private void Update()
+    {
+        if(Input.GetMouseButtonDown(0) && _isSelected)
+        {
+            GameController.Instance.DefaultRoomUi.OpenRoom(RoomIndex);
+        }
     }
 }

@@ -5,8 +5,8 @@ using Lean.Transition;
 
 public class Worker : MonoBehaviour
 {
-    private const int DefaultSorting = 2;
-    private const int MoveSorting = 1;
+    private const int DefaultSorting = 3;
+    private const int MoveSorting = 2;
     public enum State
     {
         Working,
