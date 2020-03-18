@@ -20,7 +20,6 @@ public class Worker : MonoBehaviour
     private State _currentState;
     private int _currentRoomIndex;
     private Animator _animator;
-    //todo change sorting-order while moving to new destination and back
     private SpriteRenderer _spriteRenderer;
 
     public bool IsActivePool 
@@ -39,6 +38,7 @@ public class Worker : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _spriteRenderer.sortingOrder = DefaultSorting;
         _currentState = State.Waiting;
+        _selected = false;
     }
 
     private void OnMouseEnter()
@@ -120,7 +120,7 @@ public class Worker : MonoBehaviour
             workingSpot.IsFree = false;
             transform.localPositionTransition(workingSpot.SpotPosition.position, 1f);
         }
-
+        _clicked = false;
         yield return null;
     }
 
