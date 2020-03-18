@@ -7,8 +7,11 @@ public class Worker : MonoBehaviour
 {
     private const int DefaultSorting = 3;
     private const int MoveSorting = 2;
+
+    private bool _isActiveWorker;
     public enum State
     {
+        Waiting,
         Working,
         Changing
     }
@@ -20,12 +23,22 @@ public class Worker : MonoBehaviour
     //todo change sorting-order while moving to new destination and back
     private SpriteRenderer _spriteRenderer;
 
+    public bool IsActivePool 
+    {
+        get{ return _isActiveWorker; }
+        set 
+        {
+            _isActiveWorker = value;
+            gameObject.SetActive(value); 
+        } 
+    }
+
     private void Start()
     {
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _currentRoomIndex = 1;
         _spriteRenderer.sortingOrder = DefaultSorting;
+        _currentState = State.Waiting;
     }
 
     private void OnMouseEnter()
@@ -51,15 +64,23 @@ public class Worker : MonoBehaviour
 
         if(_clicked && Input.GetMouseButtonDown(1) && _currentState != State.Changing)
         {
-            GetClickedRoom();
+            Room r = GetClickedRoom();
+            if(_currentState == State.Waiting)
+            {
+                StartChangingRoom(0, r.RoomIndex, r, true);
+            }
+            if(_currentState == State.Working)
+            {
+                StartChangingRoom(_currentRoomIndex, r.RoomIndex, r, false);
+            }
         }
     }
 
-    private void StartChangingRoom(int current, int target, Room r)
+    private void StartChangingRoom(int current, int target, Room r, bool isFirstPlace)
     {
         _currentState = State.Changing;
         _spriteRenderer.sortingOrder = MoveSorting;
-        List<Transform> points = GameController.Instance.WayPointHandler.GetWayPoints(current, target);
+        List<Transform> points = GameController.Instance.WayPointHandler.GetWayPoints(current, target, isFirstPlace);
 
         StartCoroutine(MoveToDestination(points, r));
         _currentRoomIndex = target;
@@ -125,24 +146,26 @@ public class Worker : MonoBehaviour
         yield return null;
     }
 
-    private void GetClickedRoom()
+    private Room GetClickedRoom()
     {
+        Room r = null;
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
         if (hit.collider != null && hit.transform.GetComponent<Room>() != null)
         {
-            Room r = hit.transform.GetComponent<Room>();
+            r = hit.transform.GetComponent<Room>();
             int targetRoom = r.RoomIndex;
 
             if(_currentRoomIndex != targetRoom && r.HasFreeSpot())
             {
-                StartChangingRoom(_currentRoomIndex, targetRoom, r);
+                return r;
             }
         }
         else
         {
             _selected = _clicked = false;
         }
+        return r;
     }
 
     private void OnDrawGizmos()

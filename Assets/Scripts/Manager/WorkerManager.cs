@@ -1,6 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class WorkerManager : MonoBehaviour
 {
@@ -39,9 +39,13 @@ public class WorkerManager : MonoBehaviour
 
     public int startWorker;
 
-    public int CurrentWorker;
-
+    //***** worker pooling stuff
     public const int StartPool = 10;
+
+    public GameObject WorkerPrefab;
+    public Transform WorkerHolder;
+    public Transform SpawnPoint;
+    private List<Worker> _workerPool;
 
     //Singelton Awake
     private void Awake()
@@ -54,6 +58,15 @@ public class WorkerManager : MonoBehaviour
         {
             _instance = this;
         }
+
+        _workerPool = new List<Worker>();
+
+        for (int i = 0; i < StartPool; i++)
+        {
+            Worker worker = GameObject.Instantiate(WorkerPrefab, WorkerHolder).GetComponent<Worker>();
+            worker.IsActivePool = false;
+            _workerPool.Add(worker);
+        }
     }
 
     // Start is called before the first frame update
@@ -62,9 +75,41 @@ public class WorkerManager : MonoBehaviour
         
     }
 
-    // Update is called once per frame
+    // todo some test stuff
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.X))
+        {
+            Spawn();
+        }
+        if(Input.GetKey(KeyCode.Z))
+        {
+            Remove(_workerPool.FirstOrDefault(each => each.IsActivePool));
+        }
+    }
+
+    public void Spawn()
+    {
+        Worker w = GetFreeWorker();
+        w.transform.position = SpawnPoint.position;
+        w.IsActivePool = true;
+    }
+
+    public void Remove(Worker w)
+    {
+        w.IsActivePool = false;
+    }
+
+    private Worker GetFreeWorker()
+    {
+        if(_workerPool.Any(each => !each.IsActivePool))
+        {
+            return _workerPool.First(each => !each.IsActivePool);
+        }
         
+        // add new pool entity
+        Worker worker = GameObject.Instantiate(WorkerPrefab, WorkerHolder).GetComponent<Worker>();
+        _workerPool.Add(worker);
+        return worker;
     }
 }
