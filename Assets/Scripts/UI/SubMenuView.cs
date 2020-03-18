@@ -13,6 +13,10 @@ public class SubMenuView : MonoBehaviour
             StartMenu.Instance.IsMenuActive = false;
         }
 
+        if (AudioController.Instance != null)
+        {
+            AudioController.Instance.PlaySound(AudioController.Sounds.Button);
+        }
     }
 
     public virtual void Open()
@@ -21,6 +25,10 @@ public class SubMenuView : MonoBehaviour
         if(StartMenu.Instance != null)
         {
             StartMenu.Instance.IsMenuActive = true;
+        }
+        if(AudioController.Instance != null)
+        {
+            AudioController.Instance.PlaySound(AudioController.Sounds.OpenUi);
         }
     }
 }
