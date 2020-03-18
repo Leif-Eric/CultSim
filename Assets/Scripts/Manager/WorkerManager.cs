@@ -95,9 +95,38 @@ public class WorkerManager : MonoBehaviour
         w.IsActivePool = true;
     }
 
+    /// <summary>
+    /// remove specific worker
+    /// </summary>
+    /// <param name="w"></param>
     public void Remove(Worker w)
     {
         w.IsActivePool = false;
+    }
+
+    /// <summary>
+    /// remove any active worker from room
+    /// </summary>
+    /// <param name="roomIndex">room-index</param>
+    public void RemoveWorkerFromRoom(int roomIndex)
+    {
+        if(_workerPool.Any(each => each.RoomIndex == roomIndex))
+        {
+            _workerPool.FirstOrDefault(each => each.RoomIndex == roomIndex).IsActivePool = false; ;
+        }
+    }  
+    
+    /// <summary>
+    /// remove any worker of worker-type and rooom-index
+    /// </summary>
+    /// <param name="roomIndex">room-index</param>
+    /// <param name="workerType">worker-type</param>
+    public void RemoveWorkerFromRoomWithType(int roomIndex, int workerType)
+    {
+        if(_workerPool.Any(each => each.RoomIndex == roomIndex && each.WorkerType == workerType))
+        {
+            _workerPool.FirstOrDefault(each => each.RoomIndex == roomIndex && each.WorkerType == workerType).IsActivePool = false; ;
+        }
     }
 
     private Worker GetFreeWorker()

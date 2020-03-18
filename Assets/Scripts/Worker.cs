@@ -8,6 +8,7 @@ public class Worker : MonoBehaviour
     private const int DefaultSorting = 3;
     private const int MoveSorting = 2;
 
+    //needed for pooling check
     private bool _isActiveWorker;
     public enum State
     {
@@ -15,6 +16,9 @@ public class Worker : MonoBehaviour
         Working,
         Changing
     }
+
+    public int RoomIndex { get { return _currentRoomIndex; } }
+    public int WorkerType { get; set; }
 
     private bool _selected, _clicked, _isPermanent;
     private State _currentState;
@@ -28,6 +32,7 @@ public class Worker : MonoBehaviour
         set 
         {
             _isActiveWorker = value;
+            _currentRoomIndex = 0;
             gameObject.SetActive(value); 
         } 
     }
