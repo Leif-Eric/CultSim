@@ -5,6 +5,8 @@ using Lean.Transition;
 
 public class Worker : MonoBehaviour
 {
+    private const int DefaultSorting = 2;
+    private const int MoveSorting = 1;
     public enum State
     {
         Working,
@@ -23,6 +25,7 @@ public class Worker : MonoBehaviour
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _currentRoomIndex = 1;
+        _spriteRenderer.sortingOrder = DefaultSorting;
     }
 
     private void OnMouseEnter()
@@ -55,6 +58,7 @@ public class Worker : MonoBehaviour
     private void StartChangingRoom(int current, int target, Room r)
     {
         _currentState = State.Changing;
+        _spriteRenderer.sortingOrder = MoveSorting;
         List<Transform> points = GameController.Instance.WayPointHandler.GetWayPoints(current, target);
 
         StartCoroutine(MoveToDestination(points, r));
@@ -85,6 +89,7 @@ public class Worker : MonoBehaviour
 
         WorkSpot workingSpot = r.GetWorkingSpot();
 
+        _spriteRenderer.sortingOrder = DefaultSorting;
         if (workingSpot.DestinationWay.Count > 0)
         {
             StartCoroutine(MoveToDestinationSpot(workingSpot.DestinationWay));
