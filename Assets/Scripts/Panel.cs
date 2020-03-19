@@ -60,8 +60,8 @@ public class Panel
         rm = ResourceManager.Instance;
         wm = WorkerManager.Instance;
         workerTypeZero = 0;
-        workerTypeOne = 1;
-        workerTypeTwo = 2;
+        workerTypeOne = 0;
+        workerTypeTwo = 0;
 
         upgradeStatus = new bool[]{ false, false, false, false };
 
@@ -208,6 +208,8 @@ public class Panel
             workerUpgradeInfoText = workerUpgradeOne.description;
         else
             workerUpgradeInfoText = workerUpgradeTwo.description;
+
+        GameController.MessageBus.Publish<RoomUpdatedMessage>(new RoomUpdatedMessage(roomID, false, true));
     }
 
     public void UpdateResourceInfo()
@@ -259,14 +261,16 @@ public class Panel
         {
             upgradeStatus[1] = true;
             roomUpgradeTwo.BuyUpgrade();
-            rm.money -= roomUpgradeTwo.cost;
+            rm.money -= roomUpgradeTwo.cost;
+            UpdateRoomButton();
             GameController.MessageBus.Publish<RoomUpdatedMessage>(new RoomUpdatedMessage(roomID, false));
         }
         else
         {
             upgradeStatus[0] = true;
             roomUpgradeOne.BuyUpgrade();
-            rm.money -= roomUpgradeOne.cost;
+            rm.money -= roomUpgradeOne.cost;
+            UpdateRoomButton();
             GameController.MessageBus.Publish<RoomUpdatedMessage>(new RoomUpdatedMessage(roomID, true));
         }
     }
@@ -316,7 +320,7 @@ public class Panel
             workerUpgradeOne.BuyUpgrade();
             killWorker();
         }
-
+        GameController.MessageBus.Publish<RoomUpdatedMessage>(new RoomUpdatedMessage(roomID, true, true));
     }
 
     private void PayUpgrade(Upgrade.CostType costType, float cost)
@@ -352,7 +356,7 @@ public class Panel
                 wm.freeWorkers--;
                 break;
         }
-        changeWorkerConstellation(workerTypeZero++,workerTypeOne,workerTypeTwo);
+        changeWorkerConstellation((workerTypeZero + 1),workerTypeOne,workerTypeTwo);
     }
     public void RemoveWorker()
     {

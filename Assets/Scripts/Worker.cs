@@ -79,6 +79,7 @@ public class Worker : MonoBehaviour
                 }
                 if (_currentState == State.Working)
                 {
+                    UpgradeManager.Instance.GetRoomData(_currentRoomIndex).RemoveWorker();
                     StartChangingRoom(_currentRoomIndex, r.RoomIndex, r, false);
                 }
             }
@@ -116,6 +117,7 @@ public class Worker : MonoBehaviour
         }
 
         _currentState = State.Working;
+        UpgradeManager.Instance.GetRoomData(_currentRoomIndex).AddWorker();
 
         WorkSpot workingSpot = r.GetWorkingSpot();
 

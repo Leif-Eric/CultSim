@@ -309,7 +309,7 @@ GameObject:
   - component: {fileID: 164270556}
   - component: {fileID: 164270555}
   m_Layer: 0
-  m_Name: Room_1
+  m_Name: Room_2
   m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -368,7 +368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3f5c141e9274be4eb19fd028f515455, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RoomIndex: 1
+  RoomIndex: 2
   WorkingSpots:
   - {fileID: 905714094}
   - {fileID: 1606116350}
@@ -2198,7 +2198,7 @@ GameObject:
   - component: {fileID: 919892350}
   - component: {fileID: 919892349}
   m_Layer: 0
-  m_Name: Room_2
+  m_Name: Room_1
   m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2257,7 +2257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3f5c141e9274be4eb19fd028f515455, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RoomIndex: 2
+  RoomIndex: 1
   WorkingSpots:
   - {fileID: 1065643902}
   - {fileID: 1148231524}
@@ -5112,7 +5112,7 @@ GameObject:
   - component: {fileID: 1679989232}
   - component: {fileID: 1679989231}
   m_Layer: 0
-  m_Name: Room_4
+  m_Name: Room_0
   m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5171,7 +5171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3f5c141e9274be4eb19fd028f515455, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RoomIndex: 4
+  RoomIndex: 0
   WorkingSpots:
   - {fileID: 2141037496}
   - {fileID: 656341170}
@@ -5484,7 +5484,7 @@ MonoBehaviour:
   moneyPWHigh: 0
   faithPMWMiddle: 0
   watchscoreGrowthPMWHigh: 0
-  startMoney: 0
+  startMoney: 100
   standardMoneyPWNormal: 0
   standardMoneyPWMiddle: 0
   standardMoneyPWHigh: 0
@@ -5531,7 +5531,7 @@ MonoBehaviour:
   workerWorkerHigh: 0
   workersSacrifycedSinceLastUpdate: 0
   freeWorkers: 0
-  startWorker: 0
+  startWorker: 1
   WorkerPrefab: {fileID: 6208673895932966364, guid: 12ae25c6891b9974fbca21347a20a29f,
     type: 3}
   WorkerHolder: {fileID: 1538537177}
@@ -5548,19 +5548,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59cec47912a5a134c9b659c50cca89bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  faithUpgrades: []
-  roomUpgradeWatchescoreOne: {fileID: 0}
-  roomUpgradeWatchescoreTwo: {fileID: 0}
-  roomUpgradeMoneyOne: {fileID: 0}
-  roomUpgradeMoneyTwo: {fileID: 0}
-  roomUpgradeWorkerOne: {fileID: 0}
-  roomUpgradeWorkerTwo: {fileID: 0}
-  workerUpgradeWatchescoreOne: {fileID: 0}
-  workerUpgradeWatchescoreTwo: {fileID: 0}
-  workerUpgradeMoneyOne: {fileID: 0}
-  workerUpgradeMoneyTwo: {fileID: 0}
-  workerUpgradeWorkerOne: {fileID: 0}
-  workerUpgradeWorkerTwo: {fileID: 0}
+  faithUpgrades:
+  - {fileID: 11400000, guid: 8b3310ee5b2afe44b88d4dda2201a22d, type: 2}
+  - {fileID: 11400000, guid: 8b3310ee5b2afe44b88d4dda2201a22d, type: 2}
+  - {fileID: 11400000, guid: 8b3310ee5b2afe44b88d4dda2201a22d, type: 2}
+  roomUpgradeWatchescoreOne: {fileID: 11400000, guid: 8b3310ee5b2afe44b88d4dda2201a22d,
+    type: 2}
+  roomUpgradeWatchescoreTwo: {fileID: 11400000, guid: 8b3310ee5b2afe44b88d4dda2201a22d,
+    type: 2}
+  roomUpgradeMoneyOne: {fileID: 11400000, guid: 8b3310ee5b2afe44b88d4dda2201a22d,
+    type: 2}
+  roomUpgradeMoneyTwo: {fileID: 11400000, guid: 8b3310ee5b2afe44b88d4dda2201a22d,
+    type: 2}
+  roomUpgradeWorkerOne: {fileID: 11400000, guid: 8b3310ee5b2afe44b88d4dda2201a22d,
+    type: 2}
+  roomUpgradeWorkerTwo: {fileID: 11400000, guid: 8b3310ee5b2afe44b88d4dda2201a22d,
+    type: 2}
+  workerUpgradeWatchescoreOne: {fileID: 11400000, guid: 8b3310ee5b2afe44b88d4dda2201a22d,
+    type: 2}
+  workerUpgradeWatchescoreTwo: {fileID: 11400000, guid: 8b3310ee5b2afe44b88d4dda2201a22d,
+    type: 2}
+  workerUpgradeMoneyOne: {fileID: 11400000, guid: 8b3310ee5b2afe44b88d4dda2201a22d,
+    type: 2}
+  workerUpgradeMoneyTwo: {fileID: 11400000, guid: 8b3310ee5b2afe44b88d4dda2201a22d,
+    type: 2}
+  workerUpgradeWorkerOne: {fileID: 11400000, guid: 8b3310ee5b2afe44b88d4dda2201a22d,
+    type: 2}
+  workerUpgradeWorkerTwo: {fileID: 11400000, guid: 8b3310ee5b2afe44b88d4dda2201a22d,
+    type: 2}
 --- !u!1 &1778768367
 GameObject:
   m_ObjectHideFlags: 0

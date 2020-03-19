@@ -2053,6 +2053,7 @@ MonoBehaviour:
   UpdateInfoTxt: {fileID: 3218931159645178028}
   CurrentWorkInfoTxt: {fileID: 7935342500738278082}
   OtherInfoTxt: {fileID: 3071316773781805707}
+  PermanentBtnTxt: {fileID: 6427211744508291043}
   PermanentBtn: {fileID: 5943539467168914251}
   UpgradeBtn: {fileID: 492310727452775094}
   U1Slider: {fileID: 5735066004385365873}
@@ -3473,6 +3474,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9060126622212615892, guid: 0af3801d05ed9c1449f7b7711a00adc2,
+        type: 3}
+      propertyPath: UpgradeWorkerId
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0af3801d05ed9c1449f7b7711a00adc2, type: 3}

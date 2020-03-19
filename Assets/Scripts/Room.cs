@@ -71,7 +71,7 @@ public class Room : MonoBehaviour
 
     private void OnRoomUpgraded(RoomUpdatedMessage msg)
     {
-        if(msg.roomID == RoomIndex)
+        if(msg.roomID == RoomIndex && !msg.justUpdate)
         {
             UpdateLockedSpots(msg.firstUpgrade);
         }

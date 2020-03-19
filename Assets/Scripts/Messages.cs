@@ -15,11 +15,13 @@ public class Messages
     {
         public int roomID;
         public bool firstUpgrade;
+        public bool justUpdate;
 
-        public RoomUpdatedMessage(int RoomID, bool isFirstUpgrade)
+        public RoomUpdatedMessage(int RoomID, bool isFirstUpgrade, bool justUpdate = false)
         {
             roomID = RoomID;
             firstUpgrade = isFirstUpgrade;
+            justUpdate = justUpdate;
             //0=faith
             //1=watchscore
             //2= money

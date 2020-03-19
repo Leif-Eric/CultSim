@@ -7,7 +7,7 @@ using static Messages;
 
 public class RoomUiView : SubMenuView
 {
-    public TextMeshProUGUI UpdateInfoTxt, CurrentWorkInfoTxt, OtherInfoTxt;
+    public TextMeshProUGUI UpdateInfoTxt, CurrentWorkInfoTxt, OtherInfoTxt, PermanentBtnTxt;
     public Button PermanentBtn, UpgradeBtn;
     public Slider U1Slider, U2Slider;
 
@@ -31,7 +31,7 @@ public class RoomUiView : SubMenuView
 
     public void OpenRoom(int roomIndex)
     {
-        //get room data withj room index
+        //get room data with room index
         Open();
 
         _roomData = UpgradeManager.Instance.GetRoomData(roomIndex);
@@ -58,6 +58,7 @@ public class RoomUiView : SubMenuView
         UpdateInfoTxt.text = _roomData.upgradeButtonRoomText;
         CurrentWorkInfoTxt.text = _roomData.ressourceInfoPanelText;
         OtherInfoTxt.text = _roomData.workerUpgradeInfoText;
+        PermanentBtnTxt.text = _roomData.upgradeButtonWorkerText;
     }
 
     private void UpdateWorkers()
