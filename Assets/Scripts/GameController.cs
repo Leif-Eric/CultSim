@@ -13,7 +13,7 @@ public class GameController : MonoBehaviour
 
     public RessourceInfoComponent RessourceInfo;
     public RoomUiView DefaultRoomUi;
-
+    private float timer;
 
     private void Awake()
     {
@@ -30,6 +30,7 @@ public class GameController : MonoBehaviour
         ResourceManager.Instance.Initialise();
         UpgradeManager.Instance.InitializeUpdateManager();
         WorkerManager.Instance.Initialize();
+        timer = 0;
     }
 
     public void OpenUI(int room)
@@ -44,6 +45,16 @@ public class GameController : MonoBehaviour
             {
                 DefaultRoomUi.OpenRoom(room);
             }
+        }
+    }
+
+    public void Update()
+    {
+        timer += Time.deltaTime;
+        if (timer > 1)
+        {
+            timer -= 1;
+            ResourceManager.Instance.UpdateRessources();
         }
     }
 }
