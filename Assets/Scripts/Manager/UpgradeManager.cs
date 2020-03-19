@@ -55,4 +55,22 @@ public class UpgradeManager : MonoBehaviour
             _instance = this;
         }
     }
+
+    public Panel GetRoomData(int index)
+    {
+        switch(index)
+        {
+            case 0:
+                //FAITH WO BIST DUUUUUUUU
+                return null;
+            case 1:
+                return watchscorePanel;
+            case 2:
+                return moneyPanel;
+            case 3:
+                return workerPanel;
+        }
+
+        return null;
+    }
 }

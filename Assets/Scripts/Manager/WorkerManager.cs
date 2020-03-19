@@ -135,4 +135,16 @@ public class WorkerManager : MonoBehaviour
         _workerPool.Add(worker);
         return worker;
     }
+
+    /// <summary>
+    /// initialize the first workers
+    /// </summary>
+    /// <param name="count"></param>
+    public void Initialize()
+    {
+        for (int i = 0; i < startWorker; i++)
+        {
+            Spawn();
+        }
+    }
 }
