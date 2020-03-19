@@ -285,6 +285,8 @@ public class ResourceManager : MonoBehaviour
         faithPWWMiddle=standardFaithPWWMiddle;
         watchscoreGrowthPWWHigh=standardWatchscoreGrowthPWWHigh;
 
+        GameController.MessageBus.Publish<RessourcesUpdatedMessage>(new RessourcesUpdatedMessage());
+
     }
 
     public void UpdateRessources()
@@ -334,8 +336,6 @@ public class ResourceManager : MonoBehaviour
         workers -= wm.workersSacrifycedSinceLastUpdate;
         roundedWorkers = (int)workers;
         freeWorkers = wm.freeWorkers;
-
-
 
         GameController.MessageBus.Publish<RessourcesUpdatedMessage>(new RessourcesUpdatedMessage());
     }

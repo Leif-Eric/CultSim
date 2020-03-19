@@ -142,8 +142,10 @@ public class Panel
             UpdateFaithButtons();
         }
         else
+        {
             UpdateRoomButton();
-        
+            UpdateResourceInfo();
+        }
     }
     private void UpdateFaithButtons()
     {
@@ -151,10 +153,10 @@ public class Panel
         isFUTwo = faithUpgradeTwo.cost < rm.uFaith;
         isFUThree = faithUpgradeThree.cost < rm.uFaith;
 
-        sacrificeButtonText = "Sacrifice one of your Worker's for the geater Good./n Every sacrifice gives you "+rm.faithPerSacrifice*rm.faithGrowthModifyer+" Faith but raises the Watchescore by "+ rm.watchscoreGrowthPerSacrifice*rm.watchscoreGrowthModifyer+";";
-        faithUpgradeOneText = "Pay "+ faithUpgradeOne.cost+ " unused Faith to get the "+ faithUpgradeOne.name+ " Upgrade:/n"+ faithUpgradeOne.description;
-        faithUpgradeTwoText = "Pay " + faithUpgradeTwo.cost + " unused Faith to get the " + faithUpgradeTwo.name + " Upgrade:/n" + faithUpgradeTwo.description; ;
-        faithUpgradeThreeText = "Pay " + faithUpgradeThree.cost + " unused Faith to get the " + faithUpgradeThree.name + " Upgrade:/n" + faithUpgradeThree.description; ;
+        sacrificeButtonText = "Sacrifice one of your Worker's for the geater Good." + '\n' + "Every sacrifice gives you " + rm.faithPerSacrifice*rm.faithGrowthModifyer+" Faith but raises the Watchescore by "+ rm.watchscoreGrowthPerSacrifice*rm.watchscoreGrowthModifyer+".";
+        faithUpgradeOneText = "Pay "+ faithUpgradeOne.cost+ " unused Faith to get the "+ faithUpgradeOne.name+ " Upgrade:" + '\n'+ faithUpgradeOne.description;
+        faithUpgradeTwoText = "Pay " + faithUpgradeTwo.cost + " unused Faith to get the " + faithUpgradeTwo.name + " Upgrade:" + '\n' + faithUpgradeTwo.description; ;
+        faithUpgradeThreeText = "Pay " + faithUpgradeThree.cost + " unused Faith to get the " + faithUpgradeThree.name + " Upgrade:" + '\n' + faithUpgradeThree.description; ;
     }
 
 
@@ -216,26 +218,26 @@ public class Panel
                 //watchscore
                 ressourceInfoPanelText =
                     " wathchscore growth reduction: " + ((workerTypeZero * rm.watchscoreDividerNormal + workerTypeOne * rm.watchscoreDividerMiddle + workerTypeTwo * rm.watchscoreDividerHigh) * rm.watchscoreGrowthModifyer) + "/n" +
-                    "Worker killrate: " + (rm.standardWorkerKillRateOnLevelThree - workerTypeTwo * rm.wKillrateDividerHigh  *rm.actualWatchscorePhase > 1 ? 1 : 0) + "/n" +
-                    "Militia Cost: " + (workerTypeTwo * rm.kostPerMilitaWorker) + "/n" +
-                    "Money Confiscation: " + (rm.moneyLoss - workerTypeOne * rm.moneyLossDividerMiddle*rm.actualWatchscorePhase>0?1:0) + "/n"+
-                    "Aktual Phase: "+ rm.actualWatchscorePhase+"/n"
-                    ;
+                    "Worker killrate: " + (rm.standardWorkerKillRateOnLevelThree - workerTypeTwo * rm.wKillrateDividerHigh  *rm.actualWatchscorePhase > 1 ? 1 : 0) + '\n' +
+                    "Militia Cost: " + (workerTypeTwo * rm.kostPerMilitaWorker) + '\n' +
+                    "Money Confiscation: " + (rm.moneyLoss - workerTypeOne * rm.moneyLossDividerMiddle*rm.actualWatchscorePhase>0?1:0) + '\n' +
+                    "Aktual Phase: " + rm.actualWatchscorePhase + '\n';
+
                 if (rm.actualWatchscorePhase == 0)
                     ressourceInfoPanelText += "Your Cult is not estimated to be dangerouse. But be carefull this assesment can change quickly!";
                 if (rm.actualWatchscorePhase == 1)
-                    ressourceInfoPanelText += "There are People in this Country who try to bring your Cult down with every peacefull Methode possible. /n"+
+                    ressourceInfoPanelText += "There are People in this Country who try to bring your Cult down with every peacefull Methode possible." + '\n' +
                         "Some of your Moneysources will dryout. Be carefull, if the Watchescore gets higher, the police will try to storm your farm";
                 if (rm.actualWatchscorePhase == 2)
-                    ressourceInfoPanelText += "Not only do they try to cut your Ressources, they also try to storm the farm./n"+
+                    ressourceInfoPanelText += "Not only do they try to cut your Ressources, they also try to storm the farm." + '\n' +
                         " The Skirmish with the police endanger your followers. Hurryup, or the Millitary will end all your plans!";
 
                 break;
             case 2:
                 //money
                 ressourceInfoPanelText =
-                    "Money Growth: " + ((workerTypeZero * rm.moneyPWNormal + workerTypeOne * rm.moneyPWMiddle + workerTypeTwo * rm.moneyPWHigh) * rm.moneyGrowthModifyer) + "/n" +
-                    "Faith Growth: " + workerTypeOne * rm.faithPMWMiddle * rm.faithGrowthModifyer + "/n" +
+                    "Money Growth: " + ((workerTypeZero * rm.moneyPWNormal + workerTypeOne * rm.moneyPWMiddle + workerTypeTwo * rm.moneyPWHigh) * rm.moneyGrowthModifyer) + '\n' +
+                    "Faith Growth: " + workerTypeOne * rm.faithPMWMiddle * rm.faithGrowthModifyer + '\n' +
                     "Watchscore rise: " + workerTypeTwo * rm.watchscoreGrowthPMWHigh;
                     ;
 
@@ -243,8 +245,8 @@ public class Panel
             case 3:
                 //worker
                 ressourceInfoPanelText =
-                    "Worker recruitmantrate: " + ((workerTypeZero * rm.workerPWNormal + workerTypeOne * rm.workerPWMiddle + workerTypeTwo * rm.workerPWHigh) * rm.workerGrowthModifyer) + "/n" +
-                    "Faith Growth: " + workerTypeOne * rm.faithPWWMiddle * rm.faithGrowthModifyer + "/n" +
+                    "Worker recruitmantrate: " + ((workerTypeZero * rm.workerPWNormal + workerTypeOne * rm.workerPWMiddle + workerTypeTwo * rm.workerPWHigh) * rm.workerGrowthModifyer) + '\n' +
+                    "Faith Growth: " + workerTypeOne * rm.faithPWWMiddle * rm.faithGrowthModifyer + '\n' +
                     "Watchscore rise: " + workerTypeTwo * rm.watchscoreGrowthPWWHigh;
                 break;
         }
@@ -267,8 +269,6 @@ public class Panel
             rm.money -= roomUpgradeOne.cost;
             GameController.MessageBus.Publish<RoomUpdatedMessage>(new RoomUpdatedMessage(roomID, true));
         }
-
-        UpdateResourceInfo();
     }
 
     public void BuyFaithUpgrade(int buttonNumber)

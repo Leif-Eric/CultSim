@@ -31,4 +31,19 @@ public class GameController : MonoBehaviour
         UpgradeManager.Instance.InitializeUpdateManager();
         WorkerManager.Instance.Initialize();
     }
+
+    public void OpenUI(int room)
+    {
+        if(room == 0)
+        {
+            //faith room
+        }
+        else
+        {
+            if(!DefaultRoomUi.IsActive)
+            {
+                DefaultRoomUi.OpenRoom(room);
+            }
+        }
+    }
 }

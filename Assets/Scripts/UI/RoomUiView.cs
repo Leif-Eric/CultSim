@@ -2,11 +2,13 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
+using static Messages;
 
 public class RoomUiView : SubMenuView
 {
     public TextMeshProUGUI UpdateInfoTxt, CurrentWorkInfoTxt, OtherInfoTxt;
-    public Button PermanentBtn;
+    public Button PermanentBtn, UpgradeBtn;
     public Slider U1Slider, U2Slider;
 
     public List<UpgradeEntry> UpgradeEntries = new List<UpgradeEntry>();
@@ -18,21 +20,13 @@ public class RoomUiView : SubMenuView
 
     private int _u1Val, _u2Val, _sliderMax, _updateIndex;
 
-    private bool _canAssignPermanent;
+    private bool _u1Active, _u2Active;
 
     private Panel _roomData;
 
-    private void Start()
+    private void Awake()
     {
-        foreach (var worker in WorkerEntries)
-        {
-            worker.Init(WorkerEntry.State.Free);
-        }
-
-        foreach (var upgrade in UpgradeEntries)
-        {
-            upgrade.Init(WorkerEntry.State.Free);
-        }
+        GameController.MessageBus.Subscribe<RoomUpdatedMessage>(OnRoomUpdated);
     }
 
     public void OpenRoom(int roomIndex)
@@ -41,36 +35,77 @@ public class RoomUiView : SubMenuView
         Open();
 
         _roomData = UpgradeManager.Instance.GetRoomData(roomIndex);
+        _roomData.UpdatePanel();
 
         UpdateView();
     }
 
     private void UpdateView()
     {
-        bool u1Active = _roomData.upgradeStatus[0];
-        bool u2Active = _roomData.upgradeStatus[1];
+        _u1Active = _roomData.upgradeStatus[0];
+        _u2Active = _roomData.upgradeStatus[1];
 
-        //for (int i = 0; i < WorkerEntries.Count; i++)
-        //{
-        //    if(_roomData.workers < i)
-        //    {
-        //        WorkerEntries[i].ChangeState(WorkerEntry.State.Occupied);
-        //    }
-        //    else
-        //    {
+        UpdateWorkers();
+        UpdateWorkerUpgrades();
 
-        //    }
-        //}
+        PermanentBtn.interactable = _roomData.upgradeButtonWorker;
+        UpgradeBtn.interactable = _roomData.upgradeButtonRoom;
 
-        PermanentBtn.interactable = _canAssignPermanent;
+        U1Part.sprite = _u1Active ? UpgradeActive : UpgradeInactive;
+        U2Part.sprite = _u2Active ? UpgradeActive : UpgradeInactive;
+        EndPart.sprite = _u2Active ? UpgradeActiveEnd : UpgradeInactiveEnd;
 
-        U1Part.sprite = u1Active ? UpgradeActive : UpgradeInactive;
-        U2Part.sprite = u2Active ? UpgradeActive : UpgradeInactive;
-        EndPart.sprite = u2Active ? UpgradeActiveEnd : UpgradeInactiveEnd;
+        UpdateInfoTxt.text = _roomData.upgradeButtonRoomText;
+        CurrentWorkInfoTxt.text = _roomData.ressourceInfoPanelText;
+        OtherInfoTxt.text = _roomData.workerUpgradeInfoText;
+    }
 
-        UpdateInfoTxt.text = string.Empty;
-        CurrentWorkInfoTxt.text = "Current status of used upgrade";
-        OtherInfoTxt.text = "I dont knwo what should be here.";
+    private void UpdateWorkers()
+    {
+        int defaultCount = 5;
+
+        if (_u1Active)
+            defaultCount += 2;
+        if (_u2Active)
+            defaultCount += 2;
+
+        int unassigned = Mathf.Max(0, defaultCount - _roomData.workers);
+
+        for (int i = 0; i < WorkerEntries.Count; i++)
+        {
+            if (i < _roomData.workers)
+            {
+                WorkerEntries[i].ChangeState(WorkerEntry.State.Occupied);
+            }
+            else
+            {
+                WorkerEntries[i].ChangeState(WorkerEntry.State.Locked);
+            }
+        }
+
+        WorkerEntry[] unassignedWorkers = WorkerEntries.Where(each => each.CurrentState == WorkerEntry.State.Locked).ToArray();
+
+        for (int i = 0; i < unassigned; i++)
+        {
+            unassignedWorkers[i].ChangeState(WorkerEntry.State.Free);
+        }
+    }
+
+    private void UpdateWorkerUpgrades()
+    {
+        UpgradeEntries[0].Init(WorkerEntry.State.Locked);
+        UpgradeEntries[1].Init(WorkerEntry.State.Locked);
+
+        if(_u1Active)
+        {
+            UpgradeEntries[0].Setup(this);
+            UpgradeEntries[0].ChangeState(_roomData.upgradeStatus[2] ? WorkerEntry.State.Occupied : WorkerEntry.State.Free);
+        } 
+        if(_u2Active)
+        {
+            UpgradeEntries[1].Setup(this);
+            UpgradeEntries[1].ChangeState(_roomData.upgradeStatus[3] ? WorkerEntry.State.Occupied : WorkerEntry.State.Free);
+        }
     }
 
     public void UpdateSliderActivation(int updateIndex)
@@ -98,5 +133,25 @@ public class RoomUiView : SubMenuView
     public void OnU2SliderChanged()
     {
         _u2Val = (int)U2Slider.value;
+    }
+
+    public void UpgradeEntryClicked(int workerupgardeId)
+    {
+        _roomData.UpdateWorkerButton(workerupgardeId);
+    }
+
+    public void BuyUpgradeClicked()
+    {
+        _roomData.UpgradeRoom();
+    }
+
+    public void AssignPermanentWorker()
+    {
+        _roomData.UpgradeWorker();
+    }
+
+    private void OnRoomUpdated(RoomUpdatedMessage msg)
+    {
+        UpdateView();
     }
 }

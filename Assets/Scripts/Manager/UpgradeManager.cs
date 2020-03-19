@@ -43,14 +43,14 @@ public class UpgradeManager : MonoBehaviour
 
     public void InitializeUpdateManager()
     {
-        watchscorePanel = new Panel(1,roomUpgradeWatchescoreOne,roomUpgradeWatchescoreTwo,workerUpgradeWatchescoreOne,workerUpgradeWatchescoreTwo);
-        moneyPanel = new Panel(2,roomUpgradeMoneyOne,roomUpgradeMoneyTwo,workerUpgradeMoneyOne,workerUpgradeMoneyTwo);
-        workerPanel = new Panel(3,roomUpgradeWorkerOne,roomUpgradeWorkerTwo,workerUpgradeWorkerOne,workerUpgradeWorkerTwo);
-        faithPanel = new Panel();
         upgradeShuffler = new List<int>();
         for (int i = 0; i < faithUpgrades.Length; i++)
             upgradeShuffler.Add(i);
-        
+
+        watchscorePanel = new Panel(1,roomUpgradeWatchescoreOne,roomUpgradeWatchescoreTwo,workerUpgradeWatchescoreOne,workerUpgradeWatchescoreTwo);
+        moneyPanel = new Panel(2,roomUpgradeMoneyOne,roomUpgradeMoneyTwo,workerUpgradeMoneyOne,workerUpgradeMoneyTwo);
+        workerPanel = new Panel(3,roomUpgradeWorkerOne,roomUpgradeWorkerTwo,workerUpgradeWorkerOne,workerUpgradeWorkerTwo);
+        faithPanel = new Panel();        
     }
 
     public Upgrade GetFaithUpgrade()
@@ -77,8 +77,7 @@ public class UpgradeManager : MonoBehaviour
         switch(index)
         {
             case 0:
-                //FAITH WO BIST DUUUUUUUU
-                return null;
+                return faithPanel;
             case 1:
                 return watchscorePanel;
             case 2:

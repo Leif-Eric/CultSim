@@ -28,7 +28,7 @@ public class RessourceInfoComponent : MonoBehaviour
 
     private void UpdateInfos()
     {
-        WorkerTxt.text = _ressourceManager.roundedWorkers.ToString();
+        WorkerTxt.text = _ressourceManager.roundedWorkers.ToString() + "/" + _ressourceManager.freeWorkers.ToString();
         Moneytxt.text = _ressourceManager.roundedMoney.ToString();
         FaithTxt.text = _ressourceManager.faith + "/" + _ressourceManager.uFaith;
         MenaceTxt.text = _ressourceManager.watchscore.ToString();

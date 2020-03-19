@@ -4,8 +4,11 @@ public class SubMenuView : MonoBehaviour
 {
     public GameObject View;
 
+    public bool IsActive;
+
     public void Close()
     {
+        IsActive = false;
         View.SetActive(false);
 
         if(StartMenu.Instance != null)
@@ -21,6 +24,8 @@ public class SubMenuView : MonoBehaviour
 
     public virtual void Open()
     {
+        IsActive = true;
+
         View.SetActive(true);
         if(StartMenu.Instance != null)
         {

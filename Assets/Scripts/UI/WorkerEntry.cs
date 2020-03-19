@@ -14,12 +14,16 @@ public class WorkerEntry : MonoBehaviour
     public Image BackgroundSprite;
     public GameObject Worker;
 
+    private State _currentState;
+
+    public State CurrentState { get { return _currentState; } }
+
     public void Init(State state)
     {
         ChangeState(state);
     }
 
-    public void ChangeState(State target)
+    public virtual void ChangeState(State target)
     {
         switch (target)
         {
@@ -34,6 +38,7 @@ public class WorkerEntry : MonoBehaviour
                 break;
         }
 
+        _currentState = target;
         SetWorker(target == State.Occupied);
     }
 

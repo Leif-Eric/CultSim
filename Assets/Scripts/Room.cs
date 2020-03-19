@@ -46,7 +46,7 @@ public class Room : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0) && _isSelected)
         {
-            GameController.Instance.DefaultRoomUi.OpenRoom(RoomIndex);
+            GameController.Instance.OpenUI(RoomIndex);
         }
     }
 
