@@ -70,13 +70,17 @@ public class Worker : MonoBehaviour
         if(_clicked && Input.GetMouseButtonDown(1) && _currentState != State.Changing)
         {
             Room r = GetClickedRoom();
-            if(_currentState == State.Waiting)
+
+            if( r != null)
             {
-                StartChangingRoom(0, r.RoomIndex, r, true);
-            }
-            if(_currentState == State.Working)
-            {
-                StartChangingRoom(_currentRoomIndex, r.RoomIndex, r, false);
+                if (_currentState == State.Waiting)
+                {
+                    StartChangingRoom(0, r.RoomIndex, r, true);
+                }
+                if (_currentState == State.Working)
+                {
+                    StartChangingRoom(_currentRoomIndex, r.RoomIndex, r, false);
+                }
             }
         }
     }
@@ -122,10 +126,12 @@ public class Worker : MonoBehaviour
         }
         else
         {
-            workingSpot.IsFree = false;
             transform.localPositionTransition(workingSpot.SpotPosition.position, 1f);
         }
+
+        workingSpot.IsFree = false;
         _clicked = false;
+
         yield return null;
     }
 
@@ -165,6 +171,8 @@ public class Worker : MonoBehaviour
             {
                 return r;
             }
+
+            return null;
         }
         else
         {

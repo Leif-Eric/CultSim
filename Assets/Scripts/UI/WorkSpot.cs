@@ -14,4 +14,6 @@ public class WorkSpot : MonoBehaviour
     }
 
     public bool IsFree { get; set; }
+
+    public bool isLocked { get; set; }
 }

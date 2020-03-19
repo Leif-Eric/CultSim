@@ -69,12 +69,6 @@ public class WorkerManager : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // todo some test stuff
     void Update()
     {
