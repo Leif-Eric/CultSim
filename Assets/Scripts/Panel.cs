@@ -152,9 +152,9 @@ public class Panel
         isFUThree = faithUpgradeThree.cost < rm.uFaith;
 
         sacrificeButtonText = "Sacrifice one of your Worker's for the geater Good./n Every sacrifice gives you "+rm.faithPerSacrifice*rm.faithGrowthModifyer+" Faith but raises the Watchescore by "+ rm.watchscoreGrowthPerSacrifice*rm.watchscoreGrowthModifyer+";";
-        faithUpgradeOneText = "Pay "+ faithUpgradeOne.cost+ " unused Faith to get the following Upgrade:/n"+ faithUpgradeOne.description;
-        faithUpgradeTwoText = "Pay " + faithUpgradeTwo.cost + " unused Faith to get the following Upgrade:/n" + faithUpgradeTwo.description; ;
-        faithUpgradeThreeText = "Pay " + faithUpgradeThree.cost + " unused Faith to get the following Upgrade:/n" + faithUpgradeThree.description; ;
+        faithUpgradeOneText = "Pay "+ faithUpgradeOne.cost+ " unused Faith to get the "+ faithUpgradeOne.name+ " Upgrade:/n"+ faithUpgradeOne.description;
+        faithUpgradeTwoText = "Pay " + faithUpgradeTwo.cost + " unused Faith to get the " + faithUpgradeTwo.name + " Upgrade:/n" + faithUpgradeTwo.description; ;
+        faithUpgradeThreeText = "Pay " + faithUpgradeThree.cost + " unused Faith to get the " + faithUpgradeThree.name + " Upgrade:/n" + faithUpgradeThree.description; ;
     }
 
 
