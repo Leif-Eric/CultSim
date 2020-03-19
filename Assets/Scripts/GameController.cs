@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour
     public RessourceInfoComponent RessourceInfo;
     public RoomUiView DefaultRoomUi;
 
+
     private void Awake()
     {
         if(Instance != null)
@@ -26,6 +27,8 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
-      
+        ResourceManager.Instance.Initialise();
+        UpgradeManager.Instance.InitializeUpdateManager();
+        WorkerManager.Instance.Initialize();
     }
 }

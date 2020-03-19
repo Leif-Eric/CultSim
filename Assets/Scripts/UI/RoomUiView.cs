@@ -20,24 +20,10 @@ public class RoomUiView : SubMenuView
 
     private bool _canAssignPermanent;
 
+    private Panel _roomData;
+
     private void Start()
     {
-        _sliderMax = 5;
-    }
-
-    public void OpenRoom(int roomIndex)
-    {
-        //get room data withj room index
-        Open();
-
-        UpdateView();
-    }
-
-    private void UpdateView()
-    {
-        //todo get index from room-data
-        _updateIndex = 0;
-
         foreach (var worker in WorkerEntries)
         {
             worker.Init(WorkerEntry.State.Free);
@@ -47,12 +33,40 @@ public class RoomUiView : SubMenuView
         {
             upgrade.Init(WorkerEntry.State.Free);
         }
+    }
+
+    public void OpenRoom(int roomIndex)
+    {
+        //get room data withj room index
+        Open();
+
+        _roomData = UpgradeManager.Instance.GetRoomData(roomIndex);
+
+        UpdateView();
+    }
+
+    private void UpdateView()
+    {
+        bool u1Active = _roomData.upgradeStatus[0];
+        bool u2Active = _roomData.upgradeStatus[1];
+
+        //for (int i = 0; i < WorkerEntries.Count; i++)
+        //{
+        //    if(_roomData.workers < i)
+        //    {
+        //        WorkerEntries[i].ChangeState(WorkerEntry.State.Occupied);
+        //    }
+        //    else
+        //    {
+
+        //    }
+        //}
 
         PermanentBtn.interactable = _canAssignPermanent;
 
-        U1Part.sprite = _updateIndex > 0 ? UpgradeActive : UpgradeInactive;
-        U2Part.sprite = _updateIndex > 1 ? UpgradeActive : UpgradeInactive;
-        EndPart.sprite = _updateIndex > 1 ? UpgradeActiveEnd : UpgradeInactiveEnd;
+        U1Part.sprite = u1Active ? UpgradeActive : UpgradeInactive;
+        U2Part.sprite = u2Active ? UpgradeActive : UpgradeInactive;
+        EndPart.sprite = u2Active ? UpgradeActiveEnd : UpgradeInactiveEnd;
 
         UpdateInfoTxt.text = string.Empty;
         CurrentWorkInfoTxt.text = "Current status of used upgrade";
