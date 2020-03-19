@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Messages;
 
 public class Panel 
 {
@@ -10,6 +11,8 @@ public class Panel
     public Upgrade roomUpgradeTwo;
     public Upgrade workerUpgradeOne;
     public Upgrade workerUpgradeTwo;
+
+    public int workers;
 
     public int workerTypeZero;
     public int workerTypeOne;
@@ -30,6 +33,7 @@ public class Panel
 
     public Panel(int id,Upgrade rOne, Upgrade rTwo, Upgrade wOne, Upgrade wTwo)
     {
+        workers = 0;
         roomID = id;
         ressourceInfoPanelText = "";
         upgradeButtonRoomText = "";
@@ -54,10 +58,32 @@ public class Panel
     //Aufrufen wenn slider benutzt wurden 
     public void changeWorkerConstellation(int wTypeZero,int wTypeOne, int wTypeTwo)
     {
+        int oldZero = workerTypeZero;
+        int oldOne = workerTypeOne;
+        int oldTwo = workerTypeTwo;
         workerTypeZero = wTypeZero;
         workerTypeOne = wTypeOne;
         workerTypeTwo = wTypeTwo;
-
+        switch (roomID)
+        {
+            case 1:
+                wm.watchscoreWorkerNormal -=oldZero-workerTypeZero;
+                wm.watchscoreWorkerMiddle -= oldOne - workerTypeOne;
+                wm.watchscoreWorkerHigh -= oldTwo - workerTypeTwo;
+                break;
+            case 2:
+                wm.moneyWorkerNormal -= oldZero - workerTypeZero;
+                wm.moneyWorkerMiddle -= oldOne - workerTypeOne;
+                wm.moneyWorkerHigh -= oldTwo - workerTypeTwo;
+                break;
+            case 3:
+                wm.workerWorkerNormal -= oldZero - workerTypeZero;
+                wm.workerWorkerMiddle -= oldOne - workerTypeOne;
+                wm.workerWorkerHigh -= oldTwo - workerTypeTwo;
+                break;
+        }
+        workers = workerTypeZero + workerTypeOne + workerTypeTwo;
+        
         UpdatePanel();
     }
     //Aufrufen nur wenn das Panel geöffnet wird
@@ -165,12 +191,14 @@ public class Panel
             upgradeStatus[1] = true;
             roomUpgradeTwo.BuyUpgrade();
             rm.money -= roomUpgradeTwo.cost;
+            GameController.MessageBus.Publish<RoomUpdatedMessage>(new RoomUpdatedMessage(roomID, false));
         }
         else
         {
             upgradeStatus[0] = true;
             roomUpgradeOne.BuyUpgrade();
             rm.money -= roomUpgradeOne.cost;
+            GameController.MessageBus.Publish<RoomUpdatedMessage>(new RoomUpdatedMessage(roomID, true));
         }
 
         UpdateResourceInfo();
@@ -211,17 +239,22 @@ public class Panel
         {
             case 1:
                 wm.watchscoreWorkerNormal++;
+                wm.freeWorkers--;
                 break;
             case 2:
                 wm.moneyWorkerNormal++;
+                wm.freeWorkers--;
                 break;
             case 3:
                 wm.workerWorkerNormal++;
+                wm.freeWorkers--;
                 break;
         }
+        changeWorkerConstellation(workerTypeZero++,workerTypeOne,workerTypeTwo);
     }
-    public void RemoveWorker(int workerType)
+    public void RemoveWorker()
     {
+        int workerType = GetWorkerType();
         switch (roomID)
         {
             case 1:
@@ -267,24 +300,37 @@ public class Panel
                 }
                 break;
         }
-       
+        switch (workerType)
+        {
+            case 0:
+                changeWorkerConstellation(workerTypeZero - 1, workerTypeOne, workerTypeTwo);
+                break;
+            case 1:
+                changeWorkerConstellation(workerTypeZero, workerTypeOne - 1, workerTypeTwo);
+                break;
+            case 2:
+                changeWorkerConstellation(workerTypeZero - 1, workerTypeOne, workerTypeTwo - 1);
+                break;
+        }
+        wm.freeWorkers++;
     }
+
+
     public void killWorker()
     {
+        RemoveWorker();
+        wm.freeWorkers--;
+        wm.RemoveWorkerFromRoom(roomID);
+    }
+    private int GetWorkerType()
+    {
+
         if (workerTypeZero > 0)
-        {
-            RemoveWorker(0);
-            //pool worker
-        }
+            return 0;
         else if (workerTypeOne > 0)
-        {
-            RemoveWorker(1);
-            //pool worker
-        }
+            return 1;
         else
-        {
-            RemoveWorker(2);
-            //pool worker
-        }
+            return 2;
+
     }
 }
