@@ -12,6 +12,19 @@ public class Panel
     public Upgrade workerUpgradeOne;
     public Upgrade workerUpgradeTwo;
 
+    public Upgrade faithUpgradeOne;
+    public Upgrade faithUpgradeTwo;
+    public Upgrade faithUpgradeThree;
+
+    public string sacrificeButtonText;
+    public string faithUpgradeOneText;
+    public string faithUpgradeTwoText;
+    public string faithUpgradeThreeText;
+
+    public bool isFUOne;
+    public bool isFUTwo;
+    public bool isFUThree;
+
     public int workers;
 
     public int workerTypeZero;
@@ -21,6 +34,7 @@ public class Panel
     public bool[] upgradeStatus;
     private ResourceManager rm;
     private WorkerManager wm;
+    private UpgradeManager um;
 
     public bool upgradeButtonRoom;
     public bool upgradeButtonWorker;
@@ -30,6 +44,8 @@ public class Panel
 
     public string workerUpgradeInfoText;
     public string ressourceInfoPanelText;
+
+
 
     public Panel(int id,Upgrade rOne, Upgrade rTwo, Upgrade wOne, Upgrade wTwo)
     {
@@ -47,14 +63,46 @@ public class Panel
         workerTypeOne = 1;
         workerTypeTwo = 2;
 
-        upgradeStatus = new bool[]{ false, false, false, false }; 
+        upgradeStatus = new bool[]{ false, false, false, false };
 
-        roomUpgradeOne = rOne;
-        roomUpgradeTwo = rTwo;
+            roomUpgradeOne = rOne;
+            roomUpgradeTwo = rTwo;
 
-        workerUpgradeOne = wOne;
-        workerUpgradeTwo = wTwo;
+            workerUpgradeOne = wOne;
+            workerUpgradeTwo = wTwo;
+       
     }
+    public Panel()
+    {
+
+        workers = 0;
+        roomID = 0;
+
+        sacrificeButtonText="";
+        faithUpgradeOneText="";
+        faithUpgradeTwoText="";
+        faithUpgradeThreeText="";
+
+        isFUOne = false;
+        isFUTwo = false;
+        isFUThree = false;
+
+        rm = ResourceManager.Instance;
+        wm = WorkerManager.Instance;
+
+        workerTypeZero = 0;
+        workerTypeOne = 0;
+        workerTypeTwo = 0;
+
+        um = UpgradeManager.Instance;
+
+        faithUpgradeOne = um.GetFaithUpgrade();
+        faithUpgradeTwo = um.GetFaithUpgrade();
+        faithUpgradeThree = um.GetFaithUpgrade();
+
+        upgradeStatus = new bool[] { false, false, false, false };
+    }
+
     //Aufrufen wenn slider benutzt wurden 
     public void changeWorkerConstellation(int wTypeZero,int wTypeOne, int wTypeTwo)
     {
@@ -89,9 +137,28 @@ public class Panel
     //Aufrufen nur wenn das Panel geöffnet wird
     public void UpdatePanel()
     {
-
-        UpdateRoomButton();
+        if (roomID == 0)
+        {
+            UpdateFaithButtons();
+        }
+        else
+            UpdateRoomButton();
+        
     }
+    private void UpdateFaithButtons()
+    {
+        isFUOne = faithUpgradeOne.cost < rm.uFaith;
+        isFUTwo = faithUpgradeTwo.cost < rm.uFaith;
+        isFUThree = faithUpgradeThree.cost < rm.uFaith;
+
+        sacrificeButtonText = "Sacrifice one of your Worker's for the geater Good./n Every sacrifice gives you "+rm.faithPerSacrifice*rm.faithGrowthModifyer+" Faith but raises the Watchescore by "+ rm.watchscoreGrowthPerSacrifice*rm.watchscoreGrowthModifyer+";";
+        faithUpgradeOneText = "Pay "+ faithUpgradeOne.cost+ " unused Faith to get the following Upgrade:/n"+ faithUpgradeOne.description;
+        faithUpgradeTwoText = "Pay " + faithUpgradeTwo.cost + " unused Faith to get the following Upgrade:/n" + faithUpgradeTwo.description; ;
+        faithUpgradeThreeText = "Pay " + faithUpgradeThree.cost + " unused Faith to get the following Upgrade:/n" + faithUpgradeThree.description; ;
+    }
+
+
+
     private void UpdateRoomButton()
     {
         if (upgradeStatus[1])
@@ -204,6 +271,37 @@ public class Panel
         UpdateResourceInfo();
     }
 
+    public void BuyFaithUpgrade(int buttonNumber)
+    {
+        switch (buttonNumber)
+        {
+            case 1:
+                faithUpgradeOne.BuyUpgrade();
+                rm.uFaith -= faithUpgradeOne.cost;
+                faithUpgradeOne = um.GetFaithUpgrade();
+                break;
+            case 2:
+                faithUpgradeTwo.BuyUpgrade();
+                rm.uFaith -= faithUpgradeTwo.cost;
+                faithUpgradeTwo = um.GetFaithUpgrade();
+                break;
+            case 3:
+                faithUpgradeThree.BuyUpgrade();
+                rm.uFaith -= faithUpgradeThree.cost;
+                faithUpgradeThree = um.GetFaithUpgrade();
+                break;
+        }
+        UpdatePanel();
+    }
+
+    public void SacrificeWorker()
+    {
+        rm.faith += rm.faithPerSacrifice * rm.faithGrowthModifyer;
+        rm.uFaith += rm.faithPerSacrifice * rm.faithGrowthModifyer;
+        rm.watchscore += rm.watchscoreGrowthPerSacrifice * rm.watchscoreGrowthModifyer;
+        killWorker();
+    }
+
     public void UpgradeWorker()
     {
         if (upgradeStatus[2])
@@ -237,6 +335,10 @@ public class Panel
     {
         switch (roomID)
         {
+            case 0:
+                wm.faithWorker++;
+                wm.freeWorkers--;
+                    break;
             case 1:
                 wm.watchscoreWorkerNormal++;
                 wm.freeWorkers--;
@@ -257,6 +359,9 @@ public class Panel
         int workerType = GetWorkerType();
         switch (roomID)
         {
+            case 0:
+                wm.faithWorker--;
+                break;
             case 1:
                 switch (workerType)
                 {

@@ -35,14 +35,30 @@ public class UpgradeManager : MonoBehaviour
     public Panel moneyPanel;
     [HideInInspector]
     public Panel workerPanel;
+    [HideInInspector]
+    public Panel faithPanel;
+
+
+    private List<int> upgradeShuffler;
 
     public void InitializeUpdateManager()
     {
         watchscorePanel = new Panel(1,roomUpgradeWatchescoreOne,roomUpgradeWatchescoreTwo,workerUpgradeWatchescoreOne,workerUpgradeWatchescoreTwo);
         moneyPanel = new Panel(2,roomUpgradeMoneyOne,roomUpgradeMoneyTwo,workerUpgradeMoneyOne,workerUpgradeMoneyTwo);
         workerPanel = new Panel(3,roomUpgradeWorkerOne,roomUpgradeWorkerTwo,workerUpgradeWorkerOne,workerUpgradeWorkerTwo);
+        faithPanel = new Panel();
+        upgradeShuffler = new List<int>();
+        for (int i = 0; i < faithUpgrades.Length; i++)
+            upgradeShuffler.Add(i);
+        
     }
 
+    public Upgrade GetFaithUpgrade()
+    {
+        int ran = Random.Range(0, upgradeShuffler.Count);
+        upgradeShuffler.Remove(ran);
+        return faithUpgrades[ran];
+    }
 
     private void Awake()
     {
