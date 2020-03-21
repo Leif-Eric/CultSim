@@ -27,6 +27,7 @@ public class RoomUiView : SubMenuView
     private Panel _roomData;
 
     private float _xOffset;
+    private int _roomIndex;
 
     private void Awake()
     {
@@ -36,7 +37,7 @@ public class RoomUiView : SubMenuView
 
     public void OpenRoom(int roomIndex)
     {
-        //get room data with room index
+        _roomIndex = roomIndex;
         Open();
 
         _roomData = UpgradeManager.Instance.GetRoomData(roomIndex);
@@ -190,6 +191,9 @@ public class RoomUiView : SubMenuView
 
     private void OnRoomUpdated(RoomUpdatedMessage msg)
     {
-        UpdateView();
+        if(msg.roomID == _roomIndex)
+        {
+            UpdateView();
+        }
     }
 }

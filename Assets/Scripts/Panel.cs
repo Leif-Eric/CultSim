@@ -298,6 +298,7 @@ public class Panel
                 break;
         }
         UpdatePanel();
+        GameController.MessageBus.Publish<RoomUpdatedMessage>(new RoomUpdatedMessage(roomID, true, true));
     }
 
     public void SacrificeWorker()
@@ -306,6 +307,7 @@ public class Panel
         rm.uFaith += rm.faithPerSacrifice * rm.faithGrowthModifyer;
         rm.watchscore += rm.watchscoreGrowthPerSacrifice * rm.watchscoreGrowthModifyer;
         killWorker();
+        GameController.MessageBus.Publish<RoomUpdatedMessage>(new RoomUpdatedMessage(roomID, true, true));
     }
 
     public void UpgradeWorker()
