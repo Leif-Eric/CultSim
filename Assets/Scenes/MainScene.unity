@@ -5925,21 +5925,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Ways:
-  - Start: 1
-    Target: 2
-    WayPoints:
-    - {fileID: 292476564}
-    - {fileID: 894082437}
-    - {fileID: 648297195}
-  - Start: 1
-    Target: 3
-    WayPoints:
-    - {fileID: 292476564}
-    - {fileID: 894082437}
-    - {fileID: 1270437446}
-    - {fileID: 639472989}
-  - Start: 1
-    Target: 4
+  - Start: 2
+    Target: 0
     WayPoints:
     - {fileID: 292476564}
     - {fileID: 894082437}
@@ -5948,21 +5935,40 @@ MonoBehaviour:
   - Start: 2
     Target: 1
     WayPoints:
-    - {fileID: 648297195}
-    - {fileID: 894082437}
     - {fileID: 292476564}
+    - {fileID: 894082437}
+    - {fileID: 648297195}
   - Start: 2
     Target: 3
     WayPoints:
+    - {fileID: 292476564}
+    - {fileID: 894082437}
+    - {fileID: 1270437446}
+    - {fileID: 639472989}
+  - Start: 1
+    Target: 2
+    WayPoints:
+    - {fileID: 648297195}
+    - {fileID: 894082437}
+    - {fileID: 292476564}
+  - Start: 1
+    Target: 3
+    WayPoints:
     - {fileID: 648297195}
     - {fileID: 894082437}
     - {fileID: 1270437446}
     - {fileID: 639472989}
-  - Start: 2
-    Target: 4
+  - Start: 1
+    Target: 0
     WayPoints:
     - {fileID: 648297195}
     - {fileID: 894082437}
+    - {fileID: 1270437446}
+    - {fileID: 251240459}
+  - Start: 3
+    Target: 0
+    WayPoints:
+    - {fileID: 639472989}
     - {fileID: 1270437446}
     - {fileID: 251240459}
   - Start: 3
@@ -5971,35 +5977,29 @@ MonoBehaviour:
     - {fileID: 639472989}
     - {fileID: 1270437446}
     - {fileID: 894082437}
-    - {fileID: 292476564}
+    - {fileID: 648297195}
   - Start: 3
     Target: 2
     WayPoints:
     - {fileID: 639472989}
     - {fileID: 1270437446}
     - {fileID: 894082437}
-    - {fileID: 648297195}
-  - Start: 3
-    Target: 4
-    WayPoints:
-    - {fileID: 639472989}
-    - {fileID: 1270437446}
-    - {fileID: 251240459}
-  - Start: 4
+    - {fileID: 292476564}
+  - Start: 0
     Target: 1
     WayPoints:
     - {fileID: 251240459}
     - {fileID: 1270437446}
     - {fileID: 894082437}
-    - {fileID: 292476564}
-  - Start: 4
+    - {fileID: 648297195}
+  - Start: 0
     Target: 2
     WayPoints:
     - {fileID: 251240459}
     - {fileID: 1270437446}
     - {fileID: 894082437}
-    - {fileID: 648297195}
-  - Start: 4
+    - {fileID: 292476564}
+  - Start: 0
     Target: 3
     WayPoints:
     - {fileID: 251240459}
