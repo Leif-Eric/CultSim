@@ -5,7 +5,7 @@ using Lean.Transition;
 
 public class Worker : MonoBehaviour
 {
-    private const int DefaultSorting = 3;
+    private const int DefaultSorting = 4;
     private const int MoveSorting = 2;
 
     //needed for pooling check

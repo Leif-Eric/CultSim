@@ -59,6 +59,12 @@ public class RoomUiView : SubMenuView
         CurrentWorkInfoTxt.text = _roomData.ressourceInfoPanelText;
         OtherInfoTxt.text = _roomData.workerUpgradeInfoText;
         PermanentBtnTxt.text = _roomData.upgradeButtonWorkerText;
+
+        UpdateSliderActivation(_u1Active, _u2Active);
+        if(_u1Active)
+        {
+            UpdateSliderValues();
+        }
     }
 
     private void UpdateWorkers()
@@ -109,19 +115,26 @@ public class RoomUiView : SubMenuView
         }
     }
 
-    public void UpdateSliderActivation(int updateIndex)
+    private void UpdateSliderActivation(bool u1, bool u2)
     {
-        if(updateIndex == 0)
+        if(!u1)
         {
             U1Slider.gameObject.SetActive(false);
             U2Slider.gameObject.SetActive(false);
         }
         else
         {
-            U1Slider.gameObject.SetActive(updateIndex > 0);
-            U2Slider.gameObject.SetActive(updateIndex > 1);
-            _sliderMax = updateIndex == 1 ? 7 : 9;
+            U1Slider.gameObject.SetActive(u1);
+            U2Slider.gameObject.SetActive(u2);
         }      
+    }
+
+    private void UpdateSliderValues()
+    {
+        U1Slider.minValue = 0;
+        U2Slider.maxValue = _roomData.workers;
+
+        U2Slider.minValue = _roomData.workers - _roomData.workerTypeTwo;
     }
 
     public void OnU1SliderChanged()
