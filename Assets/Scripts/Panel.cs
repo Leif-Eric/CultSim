@@ -261,7 +261,8 @@ public class Panel
         {
             upgradeStatus[1] = true;
             roomUpgradeTwo.BuyUpgrade();
-            rm.money -= roomUpgradeTwo.cost;
+            rm.money -= roomUpgradeTwo.cost;
+
             UpdateRoomButton();
             GameController.MessageBus.Publish<RoomUpdatedMessage>(new RoomUpdatedMessage(roomID, false));
         }
@@ -269,7 +270,8 @@ public class Panel
         {
             upgradeStatus[0] = true;
             roomUpgradeOne.BuyUpgrade();
-            rm.money -= roomUpgradeOne.cost;
+            rm.money -= roomUpgradeOne.cost;
+
             UpdateRoomButton();
             GameController.MessageBus.Publish<RoomUpdatedMessage>(new RoomUpdatedMessage(roomID, true));
         }
@@ -340,19 +342,19 @@ public class Panel
         switch (roomID)
         {
             case 0:
-                wm.faithWorker++;
+                
                 wm.freeWorkers--;
                     break;
             case 1:
-                wm.watchscoreWorkerNormal++;
+                
                 wm.freeWorkers--;
                 break;
             case 2:
-                wm.moneyWorkerNormal++;
+                
                 wm.freeWorkers--;
                 break;
             case 3:
-                wm.workerWorkerNormal++;
+                
                 wm.freeWorkers--;
                 break;
         }

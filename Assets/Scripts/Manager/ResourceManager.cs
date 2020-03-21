@@ -318,23 +318,48 @@ public class ResourceManager : MonoBehaviour
         else
             actualWatchscorePhase = 0;
         //worker killchance
+        if (2==actualWatchscorePhase&&roundedWorkers>0) {
+            killRateCounter += workerKillRate * (1 - wKillrateDividerHigh * wm.watchscoreWorkerHigh);
+            if (killRateCounter > 1)
+            {
+                killRateCounter--;
+                wm.killRandomWorker();
+            }
+        }
         moneyGrowth = moneyGrowthModifyer * (
             moneyPWNormal * wm.moneyWorkerNormal +
             moneyPWMiddle * wm.moneyWorkerMiddle +
             moneyPWHigh * wm.moneyWorkerHigh
             );
-        money += moneyGrowth;
+
+        if (actualWatchscorePhase >= 1)
+        {
+            money += moneyGrowth*moneyLoss*(1-moneyLossDividerMiddle*wm.watchscoreWorkerMiddle);
+        }
+        else
+        {
+            money += moneyGrowth;
+        }
+        
         roundedMoney = (int)money;
+
         //moneyloss
-        workerGrowth = workerGrowthModifyer * (
-            workerPWNormal*wm.workerWorkerNormal+
-            workerPWMiddle*wm.workerWorkerMiddle+
-            workerPWHigh*wm.workerWorkerHigh
+        if (money >= 0)
+        {
+            workerGrowth = workerGrowthModifyer * (
+            workerPWNormal * wm.workerWorkerNormal +
+            workerPWMiddle * wm.workerWorkerMiddle +
+            workerPWHigh * wm.workerWorkerHigh
             );
-        workerGrowthInPercent = (int)(workerGrowth * 100);
-        workers += workerGrowth;
-        workers -= wm.workersSacrifycedSinceLastUpdate;
-        roundedWorkers = (int)workers;
+            workerGrowthInPercent = (int)(workerGrowth * 100);
+            int oldworker = roundedWorkers;
+            workers += workerGrowth;
+            workers -= wm.workersSacrifycedSinceLastUpdate;
+            roundedWorkers = (int)workers;
+            if (roundedWorkers > oldworker)
+                wm.freeWorkers++;
+        }
+        
         freeWorkers = wm.freeWorkers;
 
         GameController.MessageBus.Publish<RessourcesUpdatedMessage>(new RessourcesUpdatedMessage());

@@ -147,4 +147,52 @@ public class WorkerManager : MonoBehaviour
             Spawn();
         }
     }
+
+    public void killRandomWorker()
+    {
+        int randRoom = Random.Range(0, 4);
+        switch (randRoom) {
+            case 0:
+                if (faithWorker > 0)
+                {
+                    UpgradeManager.Instance.faithPanel.killWorker();
+                }
+                else
+                    killRandomWorker();
+                break;
+            case 1:
+                if ((watchscoreWorkerNormal+watchscoreWorkerMiddle+watchscoreWorkerHigh)>0)
+                {
+                    UpgradeManager.Instance.watchscorePanel.killWorker();
+                }
+                else
+                    killRandomWorker();
+                break;
+            case 2:
+                if ((moneyWorkerNormal + moneyWorkerMiddle + moneyWorkerHigh) > 0)
+                {
+                    UpgradeManager.Instance.moneyPanel.killWorker();
+                }
+                else
+                    killRandomWorker();
+                break;
+            case 3:
+                if ((workerWorkerNormal + workerWorkerMiddle + workerWorkerHigh) > 0)
+                {
+                    UpgradeManager.Instance.workerPanel.killWorker();
+                }
+                else
+                    killRandomWorker();
+                break;
+            case 4:
+                if (freeWorkers > 0)
+                {
+                    freeWorkers--;
+                    RemoveWorkerFromRoom(-1);
+                }
+                else
+                    killRandomWorker();
+                break;
+        }
+    }
 }
