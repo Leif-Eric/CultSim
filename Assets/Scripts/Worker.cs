@@ -32,7 +32,7 @@ public class Worker : MonoBehaviour
         set 
         {
             _isActiveWorker = value;
-            _currentRoomIndex = 0;
+            _currentRoomIndex = -1;
             gameObject.SetActive(value); 
         } 
     }
