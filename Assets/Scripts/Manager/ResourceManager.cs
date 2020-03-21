@@ -274,6 +274,7 @@ public class ResourceManager : MonoBehaviour
         workers=wm.startWorker;
         roundedWorkers=(int)workers;
         freeWorkers=roundedWorkers;
+        wm.freeWorkers = freeWorkers;
         workerGrowth=standardWorkerGrowth;
         workerGrowthInPercent=(int)(workerGrowth*100);
         workerGrowthModifyer = 1;
@@ -305,7 +306,8 @@ public class ResourceManager : MonoBehaviour
             watchscoreDividerMiddle * wm.watchscoreWorkerMiddle +
             watchscoreDividerHigh * wm.watchscoreWorkerHigh +
             watchscoreGrowthPMWHigh * wm.moneyWorkerHigh +
-            watchscoreGrowthPWWHigh * wm.workerWorkerHigh
+            watchscoreGrowthPWWHigh * wm.workerWorkerHigh+
+            standardWatchscoreGrowth
             );
         watchscore += watchscoreGrowth;
         if (watchscore > LEVEL_ONE_WATCHSCORE)
@@ -352,7 +354,8 @@ public class ResourceManager : MonoBehaviour
             workerGrowth = workerGrowthModifyer * (
             workerPWNormal * wm.workerWorkerNormal +
             workerPWMiddle * wm.workerWorkerMiddle +
-            workerPWHigh * wm.workerWorkerHigh
+            workerPWHigh * wm.workerWorkerHigh+
+            standardWorkerGrowth
             );
             workerGrowthInPercent = (int)(workerGrowth * 100);
             int oldworker = roundedWorkers;
@@ -363,7 +366,7 @@ public class ResourceManager : MonoBehaviour
                 wm.freeWorkers++;
         }
         
-        freeWorkers = wm.freeWorkers;
+        
 
         GameController.MessageBus.Publish<RessourcesUpdatedMessage>(new RessourcesUpdatedMessage());
     }

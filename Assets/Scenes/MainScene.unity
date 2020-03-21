@@ -5873,9 +5873,9 @@ GameObject:
   - component: {fileID: 1714199360}
   - component: {fileID: 1714199359}
   - component: {fileID: 1714199361}
-  - component: {fileID: 1714199362}
   - component: {fileID: 1714199363}
   - component: {fileID: 1714199364}
+  - component: {fileID: 1714199362}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -6050,9 +6050,9 @@ MonoBehaviour:
   faithPW: 0
   faithPerSacrifice: 0
   watchscoreGrowthPerSacrifice: 0
-  standardFaithPW: 0
-  standardFaithPerSacrifice: 0
-  standardWatchscoreGrowthPerSacrifice: 0
+  standardFaithPW: 0.006
+  standardFaithPerSacrifice: 0.5
+  standardWatchscoreGrowthPerSacrifice: 0.5
   actualWatchscorePhase: 0
   watchscore: 0
   watchscoreGrowth: 0
@@ -6065,15 +6065,15 @@ MonoBehaviour:
   moneyLossDividerMiddle: 0
   wKillrateDividerHigh: 0
   kostPerMilitaWorker: 0
-  standardWatchscoreGrowth: 0
-  standardMoneyLossOnLevelTwo: 0
-  standardWorkerKillRateOnLevelThree: 0
-  standardWatchscoreDividerNormal: 0
-  standardWatchscoreDividerMiddle: 0
-  standardWatchscoreDividerHigh: 0
-  standardMoneyLossDividerMiddle: 0
-  standardWKillrateDividerHigh: 0
-  standardKostPerMilitaWorker: 0
+  standardWatchscoreGrowth: 0.2
+  standardMoneyLossOnLevelTwo: 0.3
+  standardWorkerKillRateOnLevelThree: 0.02
+  standardWatchscoreDividerNormal: 0.03
+  standardWatchscoreDividerMiddle: 0.02
+  standardWatchscoreDividerHigh: 0.02
+  standardMoneyLossDividerMiddle: 0.2
+  standardWKillrateDividerHigh: 0.01
+  standardKostPerMilitaWorker: 0.5
   money: 0
   roundedMoney: 0
   moneyGrowth: 0
@@ -6084,11 +6084,11 @@ MonoBehaviour:
   faithPMWMiddle: 0
   watchscoreGrowthPMWHigh: 0
   startMoney: 100
-  standardMoneyPWNormal: 0
-  standardMoneyPWMiddle: 0
-  standardMoneyPWHigh: 0
-  standardFaithPMWMiddle: 0
-  standardwatchscoreGrowthPMWHigh: 0
+  standardMoneyPWNormal: 0.5
+  standardMoneyPWMiddle: 0.3
+  standardMoneyPWHigh: 0.75
+  standardFaithPMWMiddle: 0.004
+  standardwatchscoreGrowthPMWHigh: 0.1
   workers: 0
   roundedWorkers: 0
   freeWorkers: 0
@@ -6100,12 +6100,12 @@ MonoBehaviour:
   workerPWHigh: 0
   faithPWWMiddle: 0
   watchscoreGrowthPWWHigh: 0
-  standardWorkerGrowth: 0
-  standardWorkerPWNormal: 0
-  standardWorkerPWMiddle: 0
-  standardWorkerPWHigh: 0
-  standardFaithPWWMiddle: 0
-  standardWatchscoreGrowthPWWHigh: 0
+  standardWorkerGrowth: 0.01
+  standardWorkerPWNormal: 0.005
+  standardWorkerPWMiddle: 0.003
+  standardWorkerPWHigh: 0.0075
+  standardFaithPWWMiddle: 0.004
+  standardWatchscoreGrowthPWWHigh: 0.1
 --- !u!114 &1714199363
 MonoBehaviour:
   m_ObjectHideFlags: 0

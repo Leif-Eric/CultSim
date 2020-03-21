@@ -50,9 +50,11 @@ public class GameController : MonoBehaviour
 
     public void Update()
     {
+        
         timer += Time.deltaTime;
         if (timer > 1)
         {
+            Debug.Log(ResourceManager.Instance.workers);
             timer -= 1;
             ResourceManager.Instance.UpdateRessources();
         }
