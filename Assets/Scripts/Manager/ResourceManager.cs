@@ -71,9 +71,9 @@ public class ResourceManager : MonoBehaviour
     [HideInInspector]
     public float watchscoreGrowthPerSacrifice;
     //Stellschrauben
-    public float standardFaithPW;
-    public float standardFaithPerSacrifice;
-    public float standardWatchscoreGrowthPerSacrifice;
+    public float standardFaithPW= 0.006f;
+    public float standardFaithPerSacrifice= 0.5f;
+    public float standardWatchscoreGrowthPerSacrifice= 0.5f;
     [Space(20)]
 
     //--------------------------------------------------------------------------------------------------------
@@ -118,19 +118,19 @@ public class ResourceManager : MonoBehaviour
     [HideInInspector]
     public float kostPerMilitaWorker;
     //Stellschrauben
-    public float standardWatchscoreGrowth;
-    public float standardMoneyLossOnLevelTwo;
-    public float standardWorkerKillRateOnLevelThree;
+    public float standardWatchscoreGrowth= 0.2f;
+    public float standardMoneyLossOnLevelTwo=0.3f;
+    public float standardWorkerKillRateOnLevelThree= 0.02f;
 
     [Space(10)]
-    public float standardWatchscoreDividerNormal;
-    public float standardWatchscoreDividerMiddle;
-    public float standardWatchscoreDividerHigh;
+    public float standardWatchscoreDividerNormal= 0.03f;
+    public float standardWatchscoreDividerMiddle= 0.02f;
+    public float standardWatchscoreDividerHigh= 0.02f;
     [Space(10)]
-    public float standardMoneyLossDividerMiddle;
+    public float standardMoneyLossDividerMiddle= 0.2f;
     [Space(10)]
-    public float standardWKillrateDividerHigh;
-    public float standardKostPerMilitaWorker;
+    public float standardWKillrateDividerHigh=0.01f;
+    public float standardKostPerMilitaWorker=0.5f;
     [Space(20)]
     //--------------------------------------------------------------------------------------------------------
     //Money
@@ -159,14 +159,14 @@ public class ResourceManager : MonoBehaviour
     [HideInInspector]
     public float watchscoreGrowthPMWHigh;
     //Stellschrauben
-    public int startMoney;
+    public int startMoney=100;
     [Space(10)]
-    public float standardMoneyPWNormal;
-    public float standardMoneyPWMiddle;
-    public float standardMoneyPWHigh;
+    public float standardMoneyPWNormal=0.5f;
+    public float standardMoneyPWMiddle=0.3f;
+    public float standardMoneyPWHigh=0.75f;
     [Space(10)]
-    public float standardFaithPMWMiddle;
-    public float standardwatchscoreGrowthPMWHigh;
+    public float standardFaithPMWMiddle= 0.004f;
+    public float standardwatchscoreGrowthPMWHigh= 0.1f;
     [Space(20)]
     //--------------------------------------------------------------------------------------------------------
     //Workers
@@ -200,14 +200,14 @@ public class ResourceManager : MonoBehaviour
 
 
     //Stellschrauben
-    public float standardWorkerGrowth;
+    public float standardWorkerGrowth=0.01f;
     [Space(10)]
-    public float standardWorkerPWNormal;
-    public float standardWorkerPWMiddle;
-    public float standardWorkerPWHigh;
+    public float standardWorkerPWNormal=0.005f;
+    public float standardWorkerPWMiddle=0.003f;
+    public float standardWorkerPWHigh=0.0075f;
     [Space(10)]
-    public float standardFaithPWWMiddle;
-    public float standardWatchscoreGrowthPWWHigh;
+    public float standardFaithPWWMiddle= 0.004f;
+    public float standardWatchscoreGrowthPWWHigh= 0.1f;
 
     //Singelton Awake
     private void Awake()
@@ -334,7 +334,10 @@ public class ResourceManager : MonoBehaviour
 
         if (actualWatchscorePhase >= 1)
         {
-            money += moneyGrowth*moneyLoss*(1-moneyLossDividerMiddle*wm.watchscoreWorkerMiddle);
+            moneyLoss = (standardMoneyLossOnLevelTwo/ (moneyLossDividerMiddle * wm.watchscoreWorkerMiddle));
+            if (moneyLoss > 1)
+                moneyLoss = 1;
+            money += moneyGrowth * moneyLoss;
         }
         else
         {
