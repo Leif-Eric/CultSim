@@ -80,37 +80,40 @@ public class Worker : MonoBehaviour
 
             if( r != null)
             {
+
+                WorkSpot workingSpot = r.GetWorkingSpot();
+                workingSpot.IsFree = false;
                 if (_currentState == State.Waiting)
                 {
-                    StartChangingRoom(0, r.RoomIndex, r, true);
+                    StartChangingRoom(0, r.RoomIndex, r, true, workingSpot);
                 }
                 if (_currentState == State.Working)
                 {
                     UpgradeManager.Instance.GetRoomData(_currentRoomIndex).RemoveWorker();
 
-                    if(_currentWorkSpot != null && _currentWorkSpot.DestinationWay.Count > 0)
+                    if (_currentWorkSpot != null && _currentWorkSpot.DestinationWay.Count > 0)
                     {
                         _currentState = State.Changing;
                         _spriteRenderer.sortingOrder = MoveSorting;
-                        StartCoroutine(MoveToDestination(GameController.Instance.WayPointHandler.GetWayFromOutside(r.RoomIndex), r));
+                        StartCoroutine(MoveToDestination(GameController.Instance.WayPointHandler.GetWayFromOutside(r.RoomIndex), r, workingSpot));
                         _currentRoomIndex = r.RoomIndex;
                     }
                     else
                     {
-                        StartChangingRoom(_currentRoomIndex, r.RoomIndex, r, false);
+                        StartChangingRoom(_currentRoomIndex, r.RoomIndex, r, false, workingSpot);
                     }
                 }
             }
         }
     }
 
-    private void StartChangingRoom(int current, int target, Room r, bool isFirstPlace)
+    private void StartChangingRoom(int current, int target, Room r, bool isFirstPlace, WorkSpot targetSpot)
     {
         _currentState = State.Changing;
         _spriteRenderer.sortingOrder = MoveSorting;
         List<Transform> points = GameController.Instance.WayPointHandler.GetWayPoints(current, target, isFirstPlace);
 
-        StartCoroutine(MoveToDestination(points, r));
+        StartCoroutine(MoveToDestination(points, r, targetSpot));
         _currentRoomIndex = target;
     }
 
@@ -119,7 +122,7 @@ public class Worker : MonoBehaviour
     /// </summary>
     /// <param name="points">way-points to reach room</param>
     /// <returns>null</returns>
-    private IEnumerator MoveToDestination(List<Transform> points, Room r)
+    private IEnumerator MoveToDestination(List<Transform> points, Room r, WorkSpot workSpot)
     {
         int index = 0;
        
@@ -137,20 +140,17 @@ public class Worker : MonoBehaviour
         _currentState = State.Working;
         UpgradeManager.Instance.GetRoomData(_currentRoomIndex).AddWorker();
 
-        WorkSpot workingSpot = r.GetWorkingSpot();
-
         _spriteRenderer.sortingOrder = DefaultSorting;
-        if (workingSpot.DestinationWay.Count > 0)
+        if (workSpot.DestinationWay.Count > 0)
         {
-            StartCoroutine(MoveToDestinationSpot(workingSpot.DestinationWay));
+            StartCoroutine(MoveToDestinationSpot(workSpot.DestinationWay));
         }
         else
         {
-            transform.localPositionTransition(workingSpot.SpotPosition.position, 1f);
+            transform.localPositionTransition(workSpot.SpotPosition.position, 1f);
         }
 
-        workingSpot.IsFree = false;
-        _currentWorkSpot = workingSpot;
+        _currentWorkSpot = workSpot;
 
         _clicked = false;
 
