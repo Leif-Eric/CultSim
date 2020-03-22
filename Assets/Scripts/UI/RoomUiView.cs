@@ -194,7 +194,7 @@ public class RoomUiView : SubMenuView
 
     private void OnRoomUpdated(RoomUpdatedMessage msg)
     {
-        if(msg.roomID == _roomIndex)
+        if(msg.roomID == _roomIndex  && IsActive)
         {
             UpdateView();
         }

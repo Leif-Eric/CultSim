@@ -29,6 +29,11 @@ public class FaithRoomUiView : SubMenuView
 
     private void UpdateView()
     {
+        if(_roomData == null)
+        {
+            return;
+        }
+
         for (int i = 0; i < WorkerEntries.Count; i++)
         {
             if (i < _roomData.workers)
@@ -57,7 +62,7 @@ public class FaithRoomUiView : SubMenuView
 
     private void OnRoomUpdated(RoomUpdatedMessage msg)
     {
-        if(msg.roomID == 0)
+        if(msg.roomID == 0 && IsActive)
         {
             UpdateView();
         }

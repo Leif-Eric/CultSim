@@ -221,7 +221,7 @@ public class Panel
             case 1:
                 //watchscore
                 ressourceInfoPanelText =
-                    " watch-score growth reduction: " + ((workerTypeZero * rm.watchscoreDividerNormal + workerTypeOne * rm.watchscoreDividerMiddle + workerTypeTwo * rm.watchscoreDividerHigh) * rm.watchscoreGrowthModifyer) + '\n' +
+                    "Watch-score growth reduction: " + ((workerTypeZero * rm.watchscoreDividerNormal + workerTypeOne * rm.watchscoreDividerMiddle + workerTypeTwo * rm.watchscoreDividerHigh) * rm.watchscoreGrowthModifyer) + '\n' +
                     "Worker killrate: " + (rm.standardWorkerKillRateOnLevelThree - workerTypeTwo * rm.wKillrateDividerHigh  *rm.actualWatchscorePhase > 1 ? 1 : 0) + '\n' +
                     "Militia cost: " + (workerTypeTwo * rm.kostPerMilitaWorker) + '\n' +
                     "Money confiscation: " + (rm.moneyLoss - workerTypeOne * rm.moneyLossDividerMiddle*rm.actualWatchscorePhase>0?1:0) + '\n' +
