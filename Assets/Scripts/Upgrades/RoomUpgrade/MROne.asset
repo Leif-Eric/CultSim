@@ -10,24 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c88191c6604ecfc4081e863b902ce6ab, type: 3}
-  m_Name: BloodRain
+  m_Name: MROne
   m_EditorClassIdentifier: 
   id: 0
-  upgradeName: Bloodrain
+  upgradeName: Elitism and Trendsetting
   method:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: f1d511164d23b674ebd418132dd44ea0, type: 3}
-        m_MethodName: set_name
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: BloodRain
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 11500000, guid: f1d511164d23b674ebd418132dd44ea0, type: 3}
         m_MethodName: set_name
         m_Mode: 5
@@ -36,11 +25,12 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: BloodRain
+          m_StringArgument: Trending
           m_BoolArgument: 0
         m_CallState: 2
   attributes: []
-  costType: 0
-  cost: 10
-  description: vh'og'dhrar opens the Gates of oshothrhurn, so that blood rains on
-    the unfaithfull. This Upgrade raises all sources of worker conversion
+  costType: 1
+  cost: 75
+  description: astablish your cult as the new secret Trend Belive. Maybe you can infiltrate
+    Hollywood and permanently employ your own Hollywoodstar. This upgrade raises your
+    earnings and the worker conversionrate.

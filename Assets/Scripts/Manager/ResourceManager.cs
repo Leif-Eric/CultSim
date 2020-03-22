@@ -301,15 +301,10 @@ public class ResourceManager : MonoBehaviour
         faith += faithGrowth+wm.workersSacrifycedSinceLastUpdate*faithPerSacrifice;
         uFaith += faithGrowth + wm.workersSacrifycedSinceLastUpdate * faithPerSacrifice;
 
-        watchscoreGrowth = watchscoreGrowthModifyer * (
-            watchscoreDividerNormal * wm.watchscoreWorkerNormal +
-            watchscoreDividerMiddle * wm.watchscoreWorkerMiddle +
-            watchscoreDividerHigh * wm.watchscoreWorkerHigh +
-            watchscoreGrowthPMWHigh * wm.moneyWorkerHigh +
-            watchscoreGrowthPWWHigh * wm.workerWorkerHigh+
-            standardWatchscoreGrowth
-            );
-        watchscore += watchscoreGrowth;
+        float wd= watchscoreGrowthModifyer * (1 + watchscoreDividerNormal * wm.watchscoreWorkerNormal+ watchscoreDividerMiddle * wm.watchscoreWorkerMiddle+ watchscoreDividerHigh * wm.watchscoreWorkerHigh);
+        watchscoreGrowth = (standardWatchscoreGrowth + watchscoreGrowthPMWHigh * wm.moneyWorkerHigh + watchscoreGrowthPWWHigh * wm.workerWorkerHigh);
+            
+        watchscore += watchscoreGrowth/wd;
         if (watchscore > LEVEL_ONE_WATCHSCORE)
         {
             if (watchscore > LEVEL_TWO_WATCHSCORE)
@@ -363,7 +358,11 @@ public class ResourceManager : MonoBehaviour
             workers -= wm.workersSacrifycedSinceLastUpdate;
             roundedWorkers = (int)workers;
             if (roundedWorkers > oldworker)
+            {
                 wm.freeWorkers++;
+                wm.Spawn();
+            }
+                
         }
         
         

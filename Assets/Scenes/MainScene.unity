@@ -2742,8 +2742,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 858544856}
-  - {fileID: 288284938824200896}
   - {fileID: 6404891304570109161}
+  - {fileID: 288284938824200896}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4972,6 +4972,7 @@ GameObject:
   - component: {fileID: 1714199363}
   - component: {fileID: 1714199364}
   - component: {fileID: 1714199362}
+  - component: {fileID: 1714199365}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -5162,12 +5163,12 @@ MonoBehaviour:
   moneyLossDividerMiddle: 0
   wKillrateDividerHigh: 0
   kostPerMilitaWorker: 0
-  standardWatchscoreGrowth: 0.2
+  standardWatchscoreGrowth: 0.1
   standardMoneyLossOnLevelTwo: 0.3
   standardWorkerKillRateOnLevelThree: 0.02
-  standardWatchscoreDividerNormal: 0.03
-  standardWatchscoreDividerMiddle: 0.02
-  standardWatchscoreDividerHigh: 0.02
+  standardWatchscoreDividerNormal: 0.2
+  standardWatchscoreDividerMiddle: 0.1
+  standardWatchscoreDividerHigh: 0.1
   standardMoneyLossDividerMiddle: 0.2
   standardWKillrateDividerHigh: 0.01
   standardKostPerMilitaWorker: 0.5
@@ -5248,30 +5249,69 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8b3310ee5b2afe44b88d4dda2201a22d, type: 2}
   - {fileID: 11400000, guid: 8b3310ee5b2afe44b88d4dda2201a22d, type: 2}
   - {fileID: 11400000, guid: 8b3310ee5b2afe44b88d4dda2201a22d, type: 2}
-  roomUpgradeWatchescoreOne: {fileID: 11400000, guid: 8b3310ee5b2afe44b88d4dda2201a22d,
+  roomUpgradeWatchescoreOne: {fileID: 11400000, guid: c1d4c531addc2574fac3a57e76765729,
     type: 2}
   roomUpgradeWatchescoreTwo: {fileID: 11400000, guid: 8b3310ee5b2afe44b88d4dda2201a22d,
     type: 2}
-  roomUpgradeMoneyOne: {fileID: 11400000, guid: 8b3310ee5b2afe44b88d4dda2201a22d,
+  roomUpgradeMoneyOne: {fileID: 11400000, guid: ad1f5efbf2a63b44b8207f16adada2e1,
     type: 2}
   roomUpgradeMoneyTwo: {fileID: 11400000, guid: 8b3310ee5b2afe44b88d4dda2201a22d,
     type: 2}
-  roomUpgradeWorkerOne: {fileID: 11400000, guid: 8b3310ee5b2afe44b88d4dda2201a22d,
+  roomUpgradeWorkerOne: {fileID: 11400000, guid: c8208bc97ae87f047b5627b86093c48b,
     type: 2}
   roomUpgradeWorkerTwo: {fileID: 11400000, guid: 8b3310ee5b2afe44b88d4dda2201a22d,
     type: 2}
-  workerUpgradeWatchescoreOne: {fileID: 11400000, guid: 8b3310ee5b2afe44b88d4dda2201a22d,
+  workerUpgradeWatchescoreOne: {fileID: 11400000, guid: 597b0fb3b61a98a4ab356d5060d3a60d,
     type: 2}
   workerUpgradeWatchescoreTwo: {fileID: 11400000, guid: 8b3310ee5b2afe44b88d4dda2201a22d,
     type: 2}
-  workerUpgradeMoneyOne: {fileID: 11400000, guid: 8b3310ee5b2afe44b88d4dda2201a22d,
+  workerUpgradeMoneyOne: {fileID: 11400000, guid: c98d785f891e35847ad1e6b3fa6673ed,
     type: 2}
   workerUpgradeMoneyTwo: {fileID: 11400000, guid: 8b3310ee5b2afe44b88d4dda2201a22d,
     type: 2}
-  workerUpgradeWorkerOne: {fileID: 11400000, guid: 8b3310ee5b2afe44b88d4dda2201a22d,
+  workerUpgradeWorkerOne: {fileID: 11400000, guid: 0665615be9e01944b99a75707396ca89,
     type: 2}
   workerUpgradeWorkerTwo: {fileID: 11400000, guid: 8b3310ee5b2afe44b88d4dda2201a22d,
     type: 2}
+--- !u!114 &1714199365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1714199358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1d511164d23b674ebd418132dd44ea0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SetwaRoomBack: {fileID: 0}
+  SetmoRoomBack: {fileID: 0}
+  SetwoRoomBack: {fileID: 0}
+  SetoutRoomBack: {fileID: 0}
+  SetmoRoomBackOne: {fileID: 0}
+  SetmoROneMoney: 0.3
+  SetmoROneWorker: 0.3
+  SetwoRoomBackOne: {fileID: 0}
+  SetwoROneMoney: 0.3
+  SetwoROneWorker: 0.3
+  SetwoROneWatchscore: 0.05
+  SetwaRoomBackOne: {fileID: 0}
+  SetoutRoomBackOne: {fileID: 0}
+  SetwaROneMoney: 0.3
+  SetwaROneWatchscore: 0.2
+  SetwaWOne: {fileID: 0}
+  SetwaWOneWatchscore: 0
+  SetwaWOneMoneyloss: 0
+  SetwaWOneKillrate: 0
+  SetwoWOne: {fileID: 0}
+  SetwoWOneMoney: 0
+  SetwoWOneFaith: 0
+  SetmoWOne: {fileID: 0}
+  SetmoWOneWorker: 0.005
+  SetbloodRainObjekt: {fileID: 0}
+  Setbackground: {fileID: 0}
+  SetredTint: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1778768367
 GameObject:
   m_ObjectHideFlags: 0
@@ -6961,7 +7001,7 @@ PrefabInstance:
     - target: {fileID: 8636280035989698192, guid: ff0d443652812a94d853e1f3fa3c9812,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8636280035989698192, guid: ff0d443652812a94d853e1f3fa3c9812,
         type: 3}
@@ -7271,7 +7311,7 @@ PrefabInstance:
     - target: {fileID: 7224661316063385032, guid: 15b6668c3c9c63643bfe921b7aec7dca,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7224661316063385032, guid: 15b6668c3c9c63643bfe921b7aec7dca,
         type: 3}
