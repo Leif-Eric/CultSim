@@ -13,6 +13,7 @@ public class GameController : MonoBehaviour
 
     public RessourceInfoComponent RessourceInfo;
     public RoomUiView DefaultRoomUi;
+    public FaithRoomUiView FaithRoomUi;
     private float timer;
 
     private void Awake()
@@ -35,16 +36,16 @@ public class GameController : MonoBehaviour
 
     public void OpenUI(int room)
     {
-        if(room == 0)
+        if (!FaithRoomUi.IsActive && !DefaultRoomUi.IsActive)
         {
-            //faith room
-        }
-        else
-        {
-            if(!DefaultRoomUi.IsActive)
+            if(room == 0)
             {
-                DefaultRoomUi.OpenRoom(room);
+                FaithRoomUi.Open();
             }
+            else 
+            { 
+                DefaultRoomUi.OpenRoom(room); 
+            }            
         }
     }
 

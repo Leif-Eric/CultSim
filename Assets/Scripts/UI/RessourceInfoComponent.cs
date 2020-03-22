@@ -28,10 +28,10 @@ public class RessourceInfoComponent : MonoBehaviour
 
     private void UpdateInfos()
     {
-        WorkerTxt.text = _ressourceManager.roundedWorkers.ToString() + "/" + _ressourceManager.freeWorkers.ToString();
-        Moneytxt.text = _ressourceManager.roundedMoney.ToString();
-        FaithTxt.text = _ressourceManager.faith + "/" + _ressourceManager.uFaith;
-        MenaceTxt.text = _ressourceManager.watchscore.ToString();
+        WorkerTxt.text = string.Format("{0:0.00}",_ressourceManager.roundedWorkers) + "/" + string.Format("{0:0.00}",_ressourceManager.freeWorkers);
+        Moneytxt.text = string.Format("{0:0.00}",_ressourceManager.roundedMoney);
+        FaithTxt.text = string.Format("{0:0.00}",_ressourceManager.faith) + "/" + string.Format("{0:0.00}",_ressourceManager.uFaith);
+        MenaceTxt.text = string.Format("{0:0.00}",_ressourceManager.watchscore);
 
         Sprite s = null;
         switch(_ressourceManager.GetWatchLevel())

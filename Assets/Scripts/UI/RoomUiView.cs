@@ -11,6 +11,8 @@ public class RoomUiView : SubMenuView
     public Button PermanentBtn, UpgradeBtn;
     public Slider U1Slider, U2Slider;
 
+    public RectTransform SliderRect;
+
     public List<UpgradeEntry> UpgradeEntries = new List<UpgradeEntry>();
     public List<WorkerEntry> WorkerEntries = new List<WorkerEntry>();
 
@@ -24,14 +26,18 @@ public class RoomUiView : SubMenuView
 
     private Panel _roomData;
 
+    private float _xOffset;
+    private int _roomIndex;
+
     private void Awake()
     {
         GameController.MessageBus.Subscribe<RoomUpdatedMessage>(OnRoomUpdated);
+        _xOffset = SliderRect.rect.width / 9;
     }
 
     public void OpenRoom(int roomIndex)
     {
-        //get room data with room index
+        _roomIndex = roomIndex;
         Open();
 
         _roomData = UpgradeManager.Instance.GetRoomData(roomIndex);
@@ -131,22 +137,44 @@ public class RoomUiView : SubMenuView
 
     private void UpdateSliderValues()
     {
-        U1Slider.minValue = 0;
+        U1Slider.SetValueWithoutNotify(_roomData.workerTypeOne); 
+        U2Slider.SetValueWithoutNotify(_roomData.workerTypeTwo);
+
+        U2Slider.minValue = 0;
         U2Slider.maxValue = _roomData.workers;
 
-        U2Slider.minValue = _roomData.workers - _roomData.workerTypeTwo;
+        U1Slider.minValue = 0;
+        U1Slider.maxValue = _roomData.workers - U2Slider.value;
+
+        RectTransform ru2 = U2Slider.GetComponent<RectTransform>();
+        ru2.sizeDelta = new Vector2(_xOffset * _roomData.workers, 20);
+        
+        RectTransform ru1 = U1Slider.GetComponent<RectTransform>();
+        ru1.sizeDelta = new Vector2(Mathf.Max(_xOffset * U1Slider.maxValue,1), 20);
+
+        ru2.anchoredPosition = Vector3.zero;
+        ru1.anchoredPosition = Vector3.zero;
+
+        ru2.anchoredPosition = new Vector3(ru2.rect.width, 0);
+        ru1.anchoredPosition = new Vector3(ru1.rect.width + _xOffset * U2Slider.value, 0); 
     }
 
     public void OnU1SliderChanged()
     {
-        _u1Val = (int)U1Slider.value;
-        
-        U2Slider.minValue = _u1Val;
+        _roomData.changeWorkerConstellation(_roomData.workers - (int)U1Slider.value - (int)U2Slider.value, (int)U1Slider.value, (int)U2Slider.value);
     }
 
     public void OnU2SliderChanged()
     {
-        _u2Val = (int)U2Slider.value;
+        int u2 = (int)U2Slider.value;
+
+        U1Slider.maxValue = _roomData.workers - u2;
+        if((int)U1Slider.value > U1Slider.maxValue)
+        {
+            U1Slider.SetValueWithoutNotify(U1Slider.maxValue);
+        }
+
+        _roomData.changeWorkerConstellation(_roomData.workers - (int)U1Slider.value - (int)U2Slider.value, (int)U1Slider.value, (int)U2Slider.value);
     }
 
     public void UpgradeEntryClicked(int workerupgardeId)
@@ -166,6 +194,9 @@ public class RoomUiView : SubMenuView
 
     private void OnRoomUpdated(RoomUpdatedMessage msg)
     {
-        UpdateView();
+        if(msg.roomID == _roomIndex  && IsActive)
+        {
+            UpdateView();
+        }
     }
 }

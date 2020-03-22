@@ -8,6 +8,8 @@ public class Worker : MonoBehaviour
     private const int DefaultSorting = 4;
     private const int MoveSorting = 2;
 
+    private ParticleSystem _particles;
+
     //needed for pooling check
     private bool _isActiveWorker;
     public enum State
@@ -41,19 +43,23 @@ public class Worker : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _particles = GetComponentInChildren<ParticleSystem>();
         _spriteRenderer.sortingOrder = DefaultSorting;
         _currentState = State.Waiting;
         _selected = false;
+        _particles.Stop();
     }
 
     private void OnMouseEnter()
     {
         _selected = true;
+        _particles.Play();
     }
 
     private void OnMouseExit()
     {
-        _selected = false;   
+        _selected = false;
+        _particles.Stop();
     }
 
     private void Update()
@@ -181,11 +187,5 @@ public class Worker : MonoBehaviour
             _selected = _clicked = false;
         }
         return r;
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.black;
-        Gizmos.DrawLine(Input.mousePosition, Vector3.back);
     }
 }
