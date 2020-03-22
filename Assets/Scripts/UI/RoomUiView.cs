@@ -150,10 +150,13 @@ public class RoomUiView : SubMenuView
         ru2.sizeDelta = new Vector2(_xOffset * _roomData.workers, 20);
         
         RectTransform ru1 = U1Slider.GetComponent<RectTransform>();
-        ru1.sizeDelta = new Vector2(_xOffset * U1Slider.maxValue, 20);
+        ru1.sizeDelta = new Vector2(Mathf.Max(_xOffset * U1Slider.maxValue,1), 20);
 
-        ru2.position = new Vector3(ru2.rect.width /*/ 2*/, 670);
-        ru1.position = new Vector3(ru1.rect.width /* / 2*/ + _xOffset * U2Slider.value, 670); 
+        ru2.anchoredPosition = Vector3.zero;
+        ru1.anchoredPosition = Vector3.zero;
+
+        ru2.anchoredPosition = new Vector3(ru2.rect.width, 0);
+        ru1.anchoredPosition = new Vector3(ru1.rect.width + _xOffset * U2Slider.value, 0); 
     }
 
     public void OnU1SliderChanged()
