@@ -133,6 +133,8 @@ public class Panel
         workers = workerTypeZero + workerTypeOne + workerTypeTwo;
         
         UpdatePanel();
+
+        GameController.MessageBus.Publish<RoomUpdatedMessage>(new RoomUpdatedMessage(roomID, false, true));
     }
     //Aufrufen nur wenn das Panel geöffnet wird
     public void UpdatePanel()
