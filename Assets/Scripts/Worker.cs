@@ -27,6 +27,7 @@ public class Worker : MonoBehaviour
     private int _currentRoomIndex;
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
+    private WorkSpot _currentWorkSpot;
 
     public bool IsActivePool 
     {
@@ -86,7 +87,18 @@ public class Worker : MonoBehaviour
                 if (_currentState == State.Working)
                 {
                     UpgradeManager.Instance.GetRoomData(_currentRoomIndex).RemoveWorker();
-                    StartChangingRoom(_currentRoomIndex, r.RoomIndex, r, false);
+
+                    if(_currentWorkSpot != null && _currentWorkSpot.DestinationWay.Count > 0)
+                    {
+                        _currentState = State.Changing;
+                        _spriteRenderer.sortingOrder = MoveSorting;
+                        StartCoroutine(MoveToDestination(GameController.Instance.WayPointHandler.GetWayFromOutside(r.RoomIndex), r));
+                        _currentRoomIndex = r.RoomIndex;
+                    }
+                    else
+                    {
+                        StartChangingRoom(_currentRoomIndex, r.RoomIndex, r, false);
+                    }
                 }
             }
         }
@@ -138,6 +150,8 @@ public class Worker : MonoBehaviour
         }
 
         workingSpot.IsFree = false;
+        _currentWorkSpot = workingSpot;
+
         _clicked = false;
 
         yield return null;
