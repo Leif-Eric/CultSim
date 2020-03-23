@@ -26061,7 +26061,7 @@ MonoBehaviour:
   faithPW: 0
   faithPerSacrifice: 0
   watchscoreGrowthPerSacrifice: 0
-  standardFaithPW: 0.006
+  standardFaithPW: 0.01
   standardFaithPerSacrifice: 0.5
   standardWatchscoreGrowthPerSacrifice: 0.5
   actualWatchscorePhase: 0
@@ -26112,9 +26112,9 @@ MonoBehaviour:
   faithPWWMiddle: 0
   watchscoreGrowthPWWHigh: 0
   standardWorkerGrowth: 0.01
-  standardWorkerPWNormal: 0.005
-  standardWorkerPWMiddle: 0.003
-  standardWorkerPWHigh: 0.0075
+  standardWorkerPWNormal: 0.01
+  standardWorkerPWMiddle: 0.006
+  standardWorkerPWHigh: 0.015
   standardFaithPWWMiddle: 0.004
   standardWatchscoreGrowthPWWHigh: 0.1
 --- !u!114 &1714199363

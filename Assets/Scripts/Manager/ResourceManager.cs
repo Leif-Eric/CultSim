@@ -316,7 +316,8 @@ public class ResourceManager : MonoBehaviour
             actualWatchscorePhase = 0;
         //worker killchance
         if (2==actualWatchscorePhase&&roundedWorkers>0) {
-            killRateCounter += workerKillRate * (1 - wKillrateDividerHigh * wm.watchscoreWorkerHigh);
+            workerKillRate=standardWorkerKillRateOnLevelThree* (1 - wKillrateDividerHigh * wm.watchscoreWorkerHigh);
+            killRateCounter += workerKillRate;
             if (killRateCounter > 1)
             {
                 killRateCounter--;
@@ -331,10 +332,10 @@ public class ResourceManager : MonoBehaviour
 
         if (actualWatchscorePhase >= 1)
         {
-            moneyLoss = (standardMoneyLossOnLevelTwo/ (moneyLossDividerMiddle * wm.watchscoreWorkerMiddle));
+            moneyLoss = (1+standardMoneyLossOnLevelTwo+ (wm.watchscoreWorkerMiddle/ moneyLossDividerMiddle ));
             if (moneyLoss > 1)
                 moneyLoss = 1;
-            money += moneyGrowth * moneyLoss;
+            money += moneyGrowth / moneyLoss;
         }
         else
         {

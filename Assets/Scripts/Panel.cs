@@ -114,6 +114,9 @@ public class Panel
         workerTypeTwo = wTypeTwo;
         switch (roomID)
         {
+            case 0:
+                wm.faithWorker = wTypeZero;
+                break;
             case 1:
                 wm.watchscoreWorkerNormal -=oldZero-workerTypeZero;
                 wm.watchscoreWorkerMiddle -= oldOne - workerTypeOne;
@@ -319,12 +322,14 @@ public class Panel
             upgradeStatus[3] = true;
             workerUpgradeTwo.BuyUpgrade();
             killWorker();
+            UpdateWorkerButton(1);
         }
         else
         {
             upgradeStatus[2] = true;
             workerUpgradeOne.BuyUpgrade();
             killWorker();
+            UpdateWorkerButton(0);
         }
         GameController.MessageBus.Publish<RoomUpdatedMessage>(new RoomUpdatedMessage(roomID, true, true));
     }

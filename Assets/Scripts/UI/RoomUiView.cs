@@ -32,7 +32,7 @@ public class RoomUiView : SubMenuView
     private void Awake()
     {
         GameController.MessageBus.Subscribe<RoomUpdatedMessage>(OnRoomUpdated);
-        _xOffset = SliderRect.rect.width / 9;
+        _xOffset = SliderRect.rect.width / 10;
     }
 
     public void OpenRoom(int roomIndex)
@@ -141,10 +141,10 @@ public class RoomUiView : SubMenuView
         U2Slider.SetValueWithoutNotify(_roomData.workerTypeTwo);
 
         U2Slider.minValue = 0;
-        U2Slider.maxValue = _roomData.workers;
+        U2Slider.maxValue = _roomData.workers+1;
 
         U1Slider.minValue = 0;
-        U1Slider.maxValue = _roomData.workers - U2Slider.value;
+        U1Slider.maxValue = _roomData.workers+1 - U2Slider.value;
 
         RectTransform ru2 = U2Slider.GetComponent<RectTransform>();
         ru2.sizeDelta = new Vector2(_xOffset * _roomData.workers, 20);
@@ -168,7 +168,7 @@ public class RoomUiView : SubMenuView
     {
         int u2 = (int)U2Slider.value;
 
-        U1Slider.maxValue = _roomData.workers - u2;
+        U1Slider.maxValue = _roomData.workers - u2+1;
         if((int)U1Slider.value > U1Slider.maxValue)
         {
             U1Slider.SetValueWithoutNotify(U1Slider.maxValue);
