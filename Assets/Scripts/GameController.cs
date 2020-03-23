@@ -58,5 +58,10 @@ public class GameController : MonoBehaviour
             timer -= 1;
             ResourceManager.Instance.UpdateRessources();
         }
+
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 }
