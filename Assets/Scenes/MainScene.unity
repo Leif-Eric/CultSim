@@ -26215,18 +26215,18 @@ MonoBehaviour:
   SetoutRoomBackOne: {fileID: 1653103445}
   SetwaROneMoney: 0.3
   SetwaROneWatchscore: 0.2
-  christalLabor: {fileID: 0}
-  drugfaith: 0
-  drugworker: 0
-  drugwatchscore: 0
-  RoomThree: {fileID: 0}
-  brainfaith: 0
-  brainmoney: 0
-  brainworker: 0
-  brainwatchscore: 0
-  FortNox: {fileID: 0}
-  watchscoreFlat: 0
-  watchscorediv: 0
+  christalLabor: {fileID: 1867185522}
+  drugfaith: 0.01
+  drugworker: 0.01
+  drugwatchscore: 0.1
+  RoomThree: {fileID: 1264675007}
+  brainfaith: 0.01
+  brainmoney: 0.1
+  brainworker: 0.01
+  brainwatchscore: 0.1
+  FortNox: {fileID: 1351246424}
+  watchscoreFlat: 10
+  watchscorediv: 0.5
   SetwaWOne: {fileID: 1487790429}
   SetwaWOneWatchscore: 0.1
   SetwaWOneMoneyloss: 0.3
