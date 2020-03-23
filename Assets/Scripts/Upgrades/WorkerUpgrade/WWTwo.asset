@@ -31,4 +31,7 @@ MonoBehaviour:
   attributes: []
   costType: 0
   cost: 0
-  description: 
+  description: One of your workers proposes a unique oportunity. He will designe an
+    Add that brainwashes everyone slowly. This will lower your watchscore once. This
+    Upgrade will cost you 100 Money
+  Upgradeid: 11

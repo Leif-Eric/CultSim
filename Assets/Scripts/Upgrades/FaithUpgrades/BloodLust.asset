@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BloodLust
   m_EditorClassIdentifier: 
   id: 0
-  upgradeName: 
+  upgradeName: Bloodlust
   method:
     m_PersistentCalls:
       m_Calls:
@@ -30,5 +30,7 @@ MonoBehaviour:
         m_CallState: 2
   attributes: []
   costType: 0
-  cost: 0
-  description: 
+  cost: 25
+  description: cnaactesh awakes and his Hunger is endless. He grants you more faith
+    per sacrifice
+  Upgradeid: 13

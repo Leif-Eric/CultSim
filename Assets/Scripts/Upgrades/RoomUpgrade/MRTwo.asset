@@ -30,5 +30,6 @@ MonoBehaviour:
         m_CallState: 2
   attributes: []
   costType: 1
-  cost: 0
-  description: 
+  cost: 200
+  description: 'Build a Druglaboratory to give your belive a little bit more substance. '
+  Upgradeid: 6

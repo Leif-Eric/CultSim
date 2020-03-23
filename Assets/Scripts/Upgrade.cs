@@ -21,13 +21,13 @@ public class Upgrade : ScriptableObject
     public float cost;
 
     public string description;
-
+    public int Upgradeid;
     
 
 
     public void BuyUpgrade()
     {
-        method.Invoke();
+        UpgradeMethodeHolder.Instance.Upgrade(Upgradeid);
     }
     
 

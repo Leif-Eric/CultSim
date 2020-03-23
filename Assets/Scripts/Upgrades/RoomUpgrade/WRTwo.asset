@@ -30,5 +30,7 @@ MonoBehaviour:
         m_CallState: 2
   attributes: []
   costType: 1
-  cost: 0
-  description: 
+  cost: 200
+  description: Builde a new Hightech Mashine to transform stuborn critics in mindless
+    minions. This Upgrade makes all your workers more effectiv but raises the watchscore
+  Upgradeid: 7

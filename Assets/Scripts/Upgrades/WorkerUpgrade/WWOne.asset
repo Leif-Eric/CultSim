@@ -33,3 +33,4 @@ MonoBehaviour:
   cost: 0
   description: This Worker will be a star on your beliver Network. He collects more
     money and faith then everyoneelse.
+  Upgradeid: 5

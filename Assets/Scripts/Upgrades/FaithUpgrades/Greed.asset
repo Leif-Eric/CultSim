@@ -30,5 +30,7 @@ MonoBehaviour:
         m_CallState: 2
   attributes: []
   costType: 0
-  cost: 0
-  description: 
+  cost: 35
+  description: The Elder oghuigru rewards your endless Hunger for money and his blessing
+    will double your Income
+  Upgradeid: 16

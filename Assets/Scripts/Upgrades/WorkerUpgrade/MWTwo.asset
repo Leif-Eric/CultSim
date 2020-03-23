@@ -31,4 +31,7 @@ MonoBehaviour:
   attributes: []
   costType: 0
   cost: 0
-  description: 
+  description: One of your Workers has a talent for selling your Drugs. If you let
+    him he will end in jail and raise your watchscore but you wil get singular Faith
+    and Money Boost
+  Upgradeid: 10

@@ -32,3 +32,4 @@ MonoBehaviour:
   costType: 1
   cost: 0
   description: He Tries to slow down every countermessurements agains your cult.
+  Upgradeid: 4

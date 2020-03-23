@@ -41,6 +41,7 @@ MonoBehaviour:
         m_CallState: 2
   attributes: []
   costType: 0
-  cost: 10
+  cost: 15
   description: vh'og'dhrar opens the Gates of oshothrhurn, so that blood rains on
     the unfaithfull. This Upgrade raises all sources of worker conversion
+  Upgradeid: 13

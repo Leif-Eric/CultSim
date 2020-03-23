@@ -30,5 +30,7 @@ MonoBehaviour:
         m_CallState: 2
   attributes: []
   costType: 1
-  cost: 0
-  description: 
+  cost: 300
+  description: Builde an Army to Protect your Ground with Brutal force.This Upgrade
+    will lower your ws once permanently and raises the effectivnes of every wsworker
+  Upgradeid: 8
