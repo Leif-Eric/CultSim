@@ -89,6 +89,11 @@ public class Worker : MonoBehaviour
                 }
                 if (_currentState == State.Working)
                 {
+                    Panel data = UpgradeManager.Instance.GetRoomData(_currentRoomIndex);
+                    if(data != null)
+                    {
+                        data.RemoveWorker();
+                    }
                     UpgradeManager.Instance.GetRoomData(_currentRoomIndex).RemoveWorker();
 
                     if (_currentWorkSpot != null && _currentWorkSpot.DestinationWay.Count > 0)
